@@ -10,7 +10,6 @@
 #include <QMessageBox>
 
 using namespace std;
-int status, v;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,17 +33,11 @@ void MainWindow::on_Ajouter_clicked()
     QString adresse=ui->adresse->text();
     QString description=ui->description->text();
     float prix=ui->price->text().toFloat();
-    if (ui->checkBox->isChecked())
-        status=1;
-                else status=0;
+    int status=ui->status->text().toInt();
+    int type=ui->type->text().toInt();
 
-    if (ui->radioButton->isChecked()){
-        v=1;
-    } else if(ui->radioButton_2->isChecked()){
-        v=0;
-    } else QMessageBox::information(this,"Type","select type please");
 
-    propriete p(matricule,nom,prenom,cin,v,adresse,description,prix,status);
+    propriete p(matricule,nom,prenom,cin,adresse,description,prix,status,type);
 
     bool test=p.ajouter();
 

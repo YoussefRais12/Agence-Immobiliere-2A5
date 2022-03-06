@@ -38,8 +38,8 @@ public:
     void setType(int tp){type=tp;}
 
     bool ajouter();
-    QSqlQueryModel * afficher();
-    bool supprimer(int);
+    //QSqlQueryModel * afficher();
+    //bool supprimer(int);
 
 };
 

@@ -24,19 +24,27 @@ propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int C
 
 bool propriete::ajouter(){
     QSqlQuery query;
-    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, PRIX, STATUS, TYPE) values (:Matricule, :Nom_prop, :Prenom_prop, :Cin_prop, :Adresse, :Description, :prix, :status, :type)");
-    query.bindValue(":MATRICULE", Matricule);
+    QString res = QString::number(Matricule);
+    QString res_cin = QString::number(Cin_prop);
+    QString res_status = QString::number(status);
+    QString res_type = QString::number(type);
+    QString res_price = QString::to
+
+    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION,STATUS, TYPE)" "values (:MATRICULE, :NOM_PROP, :PRENOM_PROP, :CIN_PROP, :ADRESSE, :DESCRIPTION, :STATUS, :TYPE)");
+
+    query.bindValue(":MATRICULE", res);
     query.bindValue(":NOM_PROP", Nom_prop );
     query.bindValue(":PRENOM_PROP",Prenom_prop);
-    query.bindValue(":CIN_PROP",Cin_prop);
+    query.bindValue(":CIN_PROP",res_cin);
     query.bindValue(":ADRESSE", Adresse);
-    query.bindValue(":PRIX", prix);
-    query.bindValue(":STATUS", status);
-    query.bindValue(":TYPE",type);
-
+    query.bindValue(":DESCRIPTION", Description);
+    query.bindValue(":PRIX", res_price);
+    query.bindValue(":STATUS", res_status);
+    query.bindValue(":TYPE",res_type);
     return query.exec();
 }
 
+/*
 QSqlQueryModel * propriete::afficher(){
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("select * from propriete");
@@ -62,6 +70,6 @@ bool propriete::supprimer(int Mat) {
 }
 
 
-
+*/
 
 
