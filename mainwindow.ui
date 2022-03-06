@@ -193,7 +193,7 @@ border-radius: 8px;
         <string>status</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="Matricule">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -206,7 +206,7 @@ border-radius: 8px;
         <string/>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="Nomprop">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -216,7 +216,7 @@ border-radius: 8px;
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_3">
+      <widget class="QLineEdit" name="prenomprop">
        <property name="geometry">
         <rect>
          <x>170</x>
@@ -226,7 +226,7 @@ border-radius: 8px;
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_4">
+      <widget class="QLineEdit" name="cin">
        <property name="geometry">
         <rect>
          <x>170</x>
@@ -236,7 +236,7 @@ border-radius: 8px;
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_6">
+      <widget class="QLineEdit" name="adresse">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -272,17 +272,7 @@ border-radius: 8px;
         <string>Location</string>
        </property>
       </widget>
-      <widget class="QTextBrowser" name="textBrowser">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>330</y>
-         <width>101</width>
-         <height>61</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_5">
+      <widget class="QLineEdit" name="price">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -318,7 +308,7 @@ border-radius: 8px;
         <string>Generer Code QR</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="Ajouter">
        <property name="geometry">
         <rect>
          <x>360</x>
@@ -342,6 +332,16 @@ border-radius: 8px;
        </property>
        <property name="text">
         <string>Annuler</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="description">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>340</y>
+         <width>113</width>
+         <height>24</height>
+        </rect>
        </property>
       </widget>
      </widget>

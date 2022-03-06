@@ -6,14 +6,14 @@
 #include <QSqlQueryModel>
 
 class propriete {
-    int Matricule, Cin_prop, status;
+    int Matricule, Cin_prop, status, type;
     float prix;
     QString Nom_prop, Prenom_prop, Adresse, Description;
 
 public:
     //constructors
     propriete(){}
-    propriete(int, QString, QString, int, QString, QString, float, int);
+    propriete(int, QString, QString, int, QString, QString, float, int, int);
 
     //getters
     int getMatricule(){return Matricule;}
@@ -24,6 +24,7 @@ public:
     QString getDescription(){return Description;}
     float getPrix(){return prix;}
     int getstatus(){return status;}
+    int getType(){return type;}
 
     //setters
     void setMatricule(int m){Matricule=m;}
@@ -34,13 +35,11 @@ public:
     void setDescription(QString desc){Description=desc;}
     void setPrix(float price){prix=price;}
     void setstatus(int stat){status=stat;}
-
+    void setType(int tp){type=tp;}
 
     bool ajouter();
     QSqlQueryModel * afficher();
     bool supprimer(int);
-
-
 
 };
 

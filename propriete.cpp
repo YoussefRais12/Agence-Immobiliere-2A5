@@ -8,7 +8,7 @@
 #include <QSqlQuery>
 #include <QApplication>
 
-propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int Cin_prop, QString Adresse, QString Description, float prix, int status){
+propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int Cin_prop, QString Adresse, QString Description, float prix, int status, int type){
 
     this->Matricule=Matricule;
     this->Nom_prop=Nom_prop;
@@ -18,12 +18,13 @@ propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int C
     this->Description=Description;
     this->prix=prix;
     this->status=status;
+    this->type=type;
 }
 
 
 bool propriete::ajouter(){
     QSqlQuery query;
-    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, PRIX, STATUS) values (:Matricule, :Nom_prop, :Prenom_prop, :Cin_prop, :Adresse, :Description, :prix, :status)");
+    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, PRIX, STATUS, TYPE) values (:Matricule, :Nom_prop, :Prenom_prop, :Cin_prop, :Adresse, :Description, :prix, :status, :type)");
     query.bindValue(":MATRICULE", Matricule);
     query.bindValue(":NOM_PROP", Nom_prop );
     query.bindValue(":PRENOM_PROP",Prenom_prop);
@@ -31,6 +32,7 @@ bool propriete::ajouter(){
     query.bindValue(":ADRESSE", Adresse);
     query.bindValue(":PRIX", prix);
     query.bindValue(":STATUS", status);
+    query.bindValue(":TYPE",type);
 
     return query.exec();
 }
@@ -42,10 +44,11 @@ QSqlQueryModel * propriete::afficher(){
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
     model->setHeaderData(3,Qt::Horizontal,QObject::tr("CIN"));
-    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Adresse"));
-    model->setHeaderData(5,Qt::Horizontal,QObject::tr("Description"));
-    model->setHeaderData(6,Qt::Horizontal,QObject::tr("Prix"));
-    model->setHeaderData(7,Qt::Horizontal,QObject::tr("Status"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Type"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("Adresse"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("Description"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("Prix"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("Status"));
 
     return model;
 }
