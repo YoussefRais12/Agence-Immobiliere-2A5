@@ -13,17 +13,51 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#Affichage {
+background: gray;
+}
+
+
+#mainFrame {
+border: 3px solid gray;
+border-radius: 40px;
+background: white;
+}
+QPushButton {
+color: white;
+background-color:#FF8C00;
+width: 140px;
+border-color: #340;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 15px;
+padding-left: 5px;
+padding-right: 5px;
+min-width: 50px;
+max-width: 200px;
+min-height: 13px;
+max-height: 13px;
+}
+QLineEdit {
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+}</string>
+  </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>10</x>
      <y>0</y>
      <width>951</width>
      <height>531</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(91, 91, 91);</string>
+    <string notr="true"/>
    </property>
    <property name="currentIndex">
     <number>2</number>
@@ -42,7 +76,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 149, 149);</string>
+      <string notr="true"/>
      </property>
      <property name="title">
       <string>Ajouter une propriété</string>
@@ -215,7 +249,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Adresse</string>
@@ -254,7 +288,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Description</string>
@@ -312,7 +346,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Logée</string>
@@ -323,13 +357,12 @@
        <rect>
         <x>340</x>
         <y>360</y>
-        <width>101</width>
-        <height>41</height>
+        <width>150</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);
-background-color: rgb(255, 183, 249);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Confirmer</string>
@@ -340,13 +373,12 @@ background-color: rgb(255, 183, 249);</string>
        <rect>
         <x>340</x>
         <y>410</y>
-        <width>101</width>
-        <height>41</height>
+        <width>150</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);
-background-color: rgb(255, 183, 249);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Annuler</string>
@@ -357,13 +389,12 @@ background-color: rgb(255, 183, 249);</string>
        <rect>
         <x>340</x>
         <y>310</y>
-        <width>101</width>
-        <height>41</height>
+        <width>150</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);
-background-color: rgb(255, 183, 249);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Générer Map</string>
@@ -380,7 +411,7 @@ background-color: rgb(255, 183, 249);</string>
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>411</width>
+       <width>451</width>
        <height>491</height>
       </rect>
      </property>
@@ -637,13 +668,12 @@ background-color: rgb(255, 183, 249);</string>
        <rect>
         <x>300</x>
         <y>390</y>
-        <width>101</width>
-        <height>41</height>
+        <width>150</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);
-background-color: rgb(255, 183, 249);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Confirmer</string>
@@ -654,13 +684,12 @@ background-color: rgb(255, 183, 249);</string>
        <rect>
         <x>300</x>
         <y>440</y>
-        <width>101</width>
-        <height>41</height>
+        <width>150</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);
-background-color: rgb(255, 183, 249);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Annuler</string>
@@ -989,8 +1018,8 @@ background-color: rgb(255, 183, 249);</string>
         <rect>
          <x>300</x>
          <y>390</y>
-         <width>101</width>
-         <height>41</height>
+         <width>150</width>
+         <height>19</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1006,8 +1035,8 @@ background-color: rgb(255, 183, 249);</string>
         <rect>
          <x>300</x>
          <y>440</y>
-         <width>101</width>
-         <height>41</height>
+         <width>150</width>
+         <height>19</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1084,7 +1113,7 @@ background-color: rgb(255, 183, 249);</string>
     <widget class="QGroupBox" name="groupBox_4">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>500</x>
        <y>10</y>
        <width>341</width>
        <height>491</height>
@@ -1131,30 +1160,28 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>180</x>
         <y>240</y>
-        <width>101</width>
-        <height>41</height>
+        <width>150</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);
-background-color: rgb(255, 183, 249);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string>Annuler</string>
+       <string>Annulwe</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_10">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>10</x>
         <y>240</y>
-        <width>101</width>
-        <height>41</height>
+        <width>150</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 149, 149);
-background-color: rgb(255, 183, 249);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Supprimer</string>
@@ -1298,10 +1325,10 @@ gridline-color: rgb(0, 0, 0);</string>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>840</x>
-       <y>47</y>
-       <width>71</width>
-       <height>21</height>
+       <x>790</x>
+       <y>50</y>
+       <width>150</width>
+       <height>19</height>
       </rect>
      </property>
      <property name="text">

@@ -1,22 +1,47 @@
 #ifndef PROPRIETE_H
 #define PROPRIETE_H
-
+#include <QString>
 #include <QDialog>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
 
-namespace Ui {
-class propriete;
-}
-
-class propriete : public QDialog
-{
-    Q_OBJECT
+class propriete {
+    int Matricule, Cin_prop, status;
+    float prix;
+    QString Nom_prop, Prenom_prop, Adresse, Description;
 
 public:
-    explicit propriete(QWidget *parent = nullptr);
-    ~propriete();
+    //constructors
+    propriete(){}
+    propriete(int, QString, QString, int, QString, QString, float, int);
 
-private:
-    Ui::propriete *ui;
+    //getters
+    int getMatricule(){return Matricule;}
+    QString getNom(){return Nom_prop;}
+    QString getPrenom(){return Prenom_prop;}
+    int getCin(){return Cin_prop;}
+    QString getAdresse(){return Adresse;}
+    QString getDescription(){return Description;}
+    float getPrix(){return prix;}
+    int getstatus(){return status;}
+
+    //setters
+    void setMatricule(int m){Matricule=m;}
+    void setNom(QString n){Nom_prop=n;}
+    void setPrenom(QString p){Prenom_prop=p;}
+    void setCin(int cin){Cin_prop=cin;}
+    void setAdresse(QString adr){Adresse=adr;}
+    void setDescription(QString desc){Description=desc;}
+    void setPrix(float price){prix=price;}
+    void setstatus(int stat){status=stat;}
+
+
+    bool ajouter();
+    QSqlQueryModel * afficher();
+    bool supprimer(int);
+
+
+
 };
 
 #endif // PROPRIETE_H

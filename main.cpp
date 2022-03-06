@@ -1,22 +1,27 @@
 #include "mainwindow.h"
-#include <QtSql>
 #include <QApplication>
-#include <QtDebug>
-
+#include <QMessageBox>
+#include "connection.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    qDebug()<<"start";
-
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("projet");
-    db.setUserName("MARWEN");
-    db.setPassword("marwen1005");
-
     MainWindow w;
-    w.show();
+    Connection c;
+    bool test=c.createconnect();
+    if(test)
+    {w.show();
+        QMessageBox::information(nullptr, QObject::tr("database is open"),
+                    QObject::tr("connection successful.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
 
-    qDebug()<<"end";
+}
+    else
+        QMessageBox::critical(nullptr, QObject::tr("database is not open"),
+                    QObject::tr("connection failed.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+
+
     return a.exec();
 }
+
