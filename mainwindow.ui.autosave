@@ -334,9 +334,9 @@ border-radius: 8px;
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>10</y>
-        <width>361</width>
+        <width>461</width>
         <height>541</height>
        </rect>
       </property>
@@ -395,8 +395,8 @@ border-radius: 8px;
       <widget class="QPushButton" name="pushButton_2">
        <property name="geometry">
         <rect>
-         <x>280</x>
-         <y>500</y>
+         <x>300</x>
+         <y>460</y>
          <width>150</width>
          <height>19</height>
         </rect>
@@ -599,7 +599,7 @@ border-radius: 8px;
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>520</x>
         <y>20</y>
         <width>361</width>
         <height>501</height>

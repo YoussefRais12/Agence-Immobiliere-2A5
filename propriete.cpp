@@ -28,9 +28,9 @@ bool propriete::ajouter(){
     QString res_cin = QString::number(Cin_prop);
     QString res_status = QString::number(status);
     QString res_type = QString::number(type);
-    QString res_price = QString::to
+    QString res_price = QString::number(prix);
 
-    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION,STATUS, TYPE)" "values (:MATRICULE, :NOM_PROP, :PRENOM_PROP, :CIN_PROP, :ADRESSE, :DESCRIPTION, :STATUS, :TYPE)");
+    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, STATUS, TYPE)" "values (:MATRICULE, :NOM_PROP, :PRENOM_PROP, :CIN_PROP, :ADRESSE, :DESCRIPTION,:STATUS, :TYPE)");
 
     query.bindValue(":MATRICULE", res);
     query.bindValue(":NOM_PROP", Nom_prop );
@@ -38,16 +38,16 @@ bool propriete::ajouter(){
     query.bindValue(":CIN_PROP",res_cin);
     query.bindValue(":ADRESSE", Adresse);
     query.bindValue(":DESCRIPTION", Description);
-    query.bindValue(":PRIX", res_price);
+    //query.bindValue(":PRIX", res_price);
     query.bindValue(":STATUS", res_status);
     query.bindValue(":TYPE",res_type);
     return query.exec();
 }
 
-/*
+
 QSqlQueryModel * propriete::afficher(){
     QSqlQueryModel * model=new QSqlQueryModel();
-    model->setQuery("select * from propriete");
+    model->setQuery("select * from Propriete");
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("Matricule"));
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
     model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
@@ -64,12 +64,11 @@ QSqlQueryModel * propriete::afficher(){
 bool propriete::supprimer(int Mat) {
     QSqlQuery query;
     QString res= QString::number(Mat);
-    query.prepare("Delete from client where MATRICULE=:Mat ");
+    query.prepare("Delete from Propriete where MATRICULE=:Mat ");
     query.bindValue(":Mat", res);
     return query.exec();
 }
 
 
-*/
 
 
