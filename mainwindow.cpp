@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tableView->setModel(pimp.afficher());
 }
 
 MainWindow::~MainWindow()
@@ -84,10 +85,28 @@ void MainWindow::on_pushButton_4_clicked()
 
 
 
+void MainWindow::on_pushButton_clicked()
+{
+    int Mat=ui->comboo->currentText().toInt();
+    bool test=pimp.modifier(Mat);
+    if(test) {
+        QMessageBox::information(nullptr, QObject::tr("OK"), QObject::tr(" MODIFIED\n"),QMessageBox::Cancel);
+    }
+    else
+    {
+        QMessageBox::critical(nullptr, QObject::tr("Not Okay"), QObject::tr("Couldn't MODIFY\n"),QMessageBox::Cancel);
 
+    }
+}
 
-
-
-
-
-
+void MainWindow::on_generer_clicked()
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
+    QString sql;
+    sql = "select Matricule From Propriete";
+    QSqlDatabase db = QSqlDatabase::database("QODBC");
+    QSqlQuery* query=new QSqlQuery(db);
+    query->exec(sql);
+    model->setQuery(*query);
+    ui->comboo->setModel(model);
+}

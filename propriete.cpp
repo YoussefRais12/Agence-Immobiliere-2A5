@@ -69,6 +69,24 @@ bool propriete::supprimer(int Mat) {
     return query.exec();
 }
 
+bool propriete::modifier(int Mat)
+{
+    QSqlQuery query;
+    QString res= QString::number(Mat);
+    QString res_cin = QString::number(Cin_prop);
+    QString res_status = QString::number(status);
+    QString res_type = QString::number(type);
+    QString res_price = QString::number(prix);
+    query.prepare("UPDATE Propriete SET NOM_PROP='pppp' WHERE MATRICULE=32");
+    //query.bindValue(":NOM_PROP", Nom_prop);
+    /*query.bindValue(":PRENOM_PROP",Prenom_prop);
+    query.bindValue(":CIN_PROP",res_cin);
+    query.bindValue(":ADRESSE", Adresse);
+    query.bindValue(":DESCRIPTION", Description);
+    //query.bindValue(":PRIX", res_price);
+    query.bindValue(":STATUS", res_status);
+    */ //query.bindValue(":TYPE",res_type);
+    return    query.exec();
 
-
+}
 
