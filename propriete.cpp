@@ -77,10 +77,11 @@ bool propriete::modifier(int Mat)
     QString res_status = QString::number(status);
     QString res_type = QString::number(type);
     QString res_price = QString::number(prix);
-    query.prepare("UPDATE Propriete SET NOM_PROP='pppp' WHERE MATRICULE=32");
+    query.prepare("UPDATE Propriete SET CIN_PROP=:CIN_PROP WHERE (MATRICULE=:Mat)");
+    query.bindValue(":CIN_PROP",res_cin);
+    query.bindValue(":Mat", res);
     //query.bindValue(":NOM_PROP", Nom_prop);
     /*query.bindValue(":PRENOM_PROP",Prenom_prop);
-    query.bindValue(":CIN_PROP",res_cin);
     query.bindValue(":ADRESSE", Adresse);
     query.bindValue(":DESCRIPTION", Description);
     //query.bindValue(":PRIX", res_price);

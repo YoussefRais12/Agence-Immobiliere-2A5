@@ -88,6 +88,17 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     int Mat=ui->comboo->currentText().toInt();
+    QString Nom=ui->nomprop->text();
+    QString Prenom=ui->prenompropr->text();
+    int Cin=ui->Cin_prop->text().toInt();
+    QString Adresse=ui->adre->text();
+    QString Description=ui->decri->text();
+    int type=ui->typeprop->text().toInt();
+    int status=ui->status_2->text().toInt();
+    float price=ui->pri->text().toFloat();
+    propriete p(Mat,Nom,Prenom,Cin,Adresse,Description,price,status,type);
+
+
     bool test=pimp.modifier(Mat);
     if(test) {
         QMessageBox::information(nullptr, QObject::tr("OK"), QObject::tr(" MODIFIED\n"),QMessageBox::Cancel);

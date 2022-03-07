@@ -58,7 +58,7 @@ border-radius: 8px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -347,7 +347,7 @@ border-radius: 8px;
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>50</y>
+         <y>70</y>
          <width>231</width>
          <height>41</height>
         </rect>
@@ -370,7 +370,7 @@ border-radius: 8px;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
+         <y>80</y>
          <width>101</width>
          <height>16</height>
         </rect>
@@ -382,7 +382,7 @@ border-radius: 8px;
       <widget class="QPushButton" name="pushButton">
        <property name="geometry">
         <rect>
-         <x>190</x>
+         <x>300</x>
          <y>500</y>
          <width>150</width>
          <height>19</height>
@@ -402,14 +402,14 @@ border-radius: 8px;
         </rect>
        </property>
        <property name="text">
-        <string>Annuler</string>
+        <string>Load</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="typeprop">
        <property name="geometry">
         <rect>
          <x>110</x>
-         <y>270</y>
+         <y>250</y>
          <width>113</width>
          <height>24</height>
         </rect>
@@ -418,8 +418,8 @@ border-radius: 8px;
       <widget class="QLineEdit" name="status_2">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>490</y>
+         <x>90</x>
+         <y>450</y>
          <width>113</width>
          <height>24</height>
         </rect>
@@ -430,7 +430,7 @@ border-radius: 8px;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>340</y>
+        <y>300</y>
         <width>56</width>
         <height>16</height>
        </rect>
@@ -443,7 +443,7 @@ border-radius: 8px;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>390</y>
+        <y>350</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -452,7 +452,7 @@ border-radius: 8px;
        <string>Description</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="cinprop">
+     <widget class="QLineEdit" name="Cin_prop">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -465,8 +465,8 @@ border-radius: 8px;
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>490</y>
+        <x>20</x>
+        <y>470</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -478,8 +478,8 @@ border-radius: 8px;
      <widget class="QLineEdit" name="adre">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>340</y>
+        <x>110</x>
+        <y>300</y>
         <width>113</width>
         <height>24</height>
        </rect>
@@ -488,8 +488,8 @@ border-radius: 8px;
      <widget class="QLineEdit" name="pri">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>450</y>
+        <x>110</x>
+        <y>410</y>
         <width>113</width>
         <height>24</height>
        </rect>
@@ -499,7 +499,7 @@ border-radius: 8px;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>190</y>
+        <y>180</y>
         <width>141</width>
         <height>16</height>
        </rect>
@@ -522,7 +522,7 @@ border-radius: 8px;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>280</y>
+        <y>260</y>
         <width>56</width>
         <height>16</height>
        </rect>
@@ -545,7 +545,7 @@ border-radius: 8px;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>230</y>
+        <y>220</y>
         <width>56</width>
         <height>16</height>
        </rect>
@@ -557,8 +557,8 @@ border-radius: 8px;
      <widget class="QLabel" name="label_17">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>460</y>
+        <x>20</x>
+        <y>410</y>
         <width>56</width>
         <height>16</height>
        </rect>
@@ -625,15 +625,15 @@ border-radius: 8px;
         </rect>
        </property>
        <property name="text">
-        <string>Annuler</string>
+        <string>Generer</string>
        </property>
       </widget>
      </widget>
      <widget class="QLineEdit" name="decri">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>390</y>
+        <x>110</x>
+        <y>350</y>
         <width>113</width>
         <height>24</height>
        </rect>
@@ -659,7 +659,7 @@ border-radius: 8px;
       <widget class="QTableView" name="tableView">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>100</x>
          <y>50</y>
          <width>771</width>
          <height>361</height>
