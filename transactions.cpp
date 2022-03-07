@@ -76,10 +76,14 @@ bool transactions::modifier()
       {
 
 
-       qDebug()<<" mis a jour effectuuer!!\n";
+       qDebug()<<" Mis a jour effectuer!!\n";
    }
 
-    else{ qDebug()<<" echec de la mis a jour!!\n";
+    else{ qDebug()<<" Echec de la mis a jour!!\n";
 }
+}
+bool controle_ajout(){
+
+
 }
 
