@@ -7,6 +7,7 @@
 #include<QDesktopServices>
 #include<QFileDialog>
 #include <QPushButton>
+#include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent) :
