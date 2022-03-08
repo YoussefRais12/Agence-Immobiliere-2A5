@@ -452,7 +452,7 @@ border-radius: 8px;
        <string>Description</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="Cin_prop">
+     <widget class="QLineEdit" name="carte">
       <property name="geometry">
        <rect>
         <x>170</x>
