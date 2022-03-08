@@ -8,7 +8,7 @@
 #include <QSqlQuery>
 #include <QApplication>
 
-propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int Cin_prop, QString Adresse, QString Description, float prix, int status, int type){
+propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int Cin_prop, QString Adresse, QString Description, QString prix, int status, int type){
 
     this->Matricule=Matricule;
     this->Nom_prop=Nom_prop;
@@ -28,9 +28,8 @@ bool propriete::ajouter(){
     QString res_cin = QString::number(Cin_prop);
     QString res_status = QString::number(status);
     QString res_type = QString::number(type);
-    QString res_price = QString::number(prix);
 
-    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, STATUS, TYPE)" "values (:MATRICULE, :NOM_PROP, :PRENOM_PROP, :CIN_PROP, :ADRESSE, :DESCRIPTION,:STATUS, :TYPE)");
+    query.prepare("insert into Propriete (MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION,PRIX, STATUS, TYPE)" "values (:MATRICULE, :NOM_PROP, :PRENOM_PROP, :CIN_PROP, :ADRESSE, :DESCRIPTION,:PRIX, :STATUS, :TYPE)");
 
     query.bindValue(":MATRICULE", res);
     query.bindValue(":NOM_PROP", Nom_prop );
@@ -38,7 +37,7 @@ bool propriete::ajouter(){
     query.bindValue(":CIN_PROP",res_cin);
     query.bindValue(":ADRESSE", Adresse);
     query.bindValue(":DESCRIPTION", Description);
-    //query.bindValue(":PRIX", res_price);
+    query.bindValue(":PRIX", prix);
     query.bindValue(":STATUS", res_status);
     query.bindValue(":TYPE",res_type);
     return query.exec();
@@ -76,8 +75,7 @@ bool propriete::modifier(int Mat)
     //QString res_cin = QString::number(Cin_prop);
     QString res_status = QString::number(status);
     QString res_type = QString::number(type);
-    QString res_price = QString::number(prix);
-    query.prepare("update Propriete set NOM_PROP='marwen' WHERE (MATRICULE=:Mat)");
+    query.prepare("update Propriete set NOM_PROP=:nNOM_PROP WHERE (MATRICULE=:Mat)");
     query.bindValue(":Mat", res);
     //query.bindValue(":CIN_PROP",Cin_prop);
     query.bindValue(":NOM_PROP", Nom_prop);

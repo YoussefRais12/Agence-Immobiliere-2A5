@@ -34,7 +34,7 @@ void MainWindow::on_Ajouter_clicked()
     int cin=ui->cin->text().toInt();
     QString adresse=ui->adresse->text();
     QString description=ui->description->text();
-    float prix=ui->price->text().toFloat();
+    QString prix=ui->price->text();
     int status=ui->status->text().toInt();
     int type=ui->type->text().toInt();
     QString Matriculetest=ui->Matricule->text();
@@ -127,7 +127,7 @@ void MainWindow::on_pushButton_clicked()
     QString Description=ui->decri->text();
     int type=ui->typeprop->text().toInt();
     int status=ui->status_2->text().toInt();
-    float price=ui->pri->text().toFloat();
+    QString price=ui->pri->text();
     propriete p(Mat,Nom,Prenom,Cin_prop,Adresse,Description,price,status,type);
 
 

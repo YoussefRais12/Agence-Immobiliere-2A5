@@ -7,13 +7,13 @@
 
 class propriete {
     int Matricule, Cin_prop, status, type;
-    float prix;
+    QString prix;
     QString Nom_prop, Prenom_prop, Adresse, Description;
 
 public:
     //constructors
     propriete(){}
-    propriete(int, QString, QString, int, QString, QString, float, int, int);
+    propriete(int, QString, QString, int, QString, QString, QString, int, int);
 
     //getters
     int getMatricule(){return Matricule;}
@@ -22,7 +22,7 @@ public:
     int getCin(){return Cin_prop;}
     QString getAdresse(){return Adresse;}
     QString getDescription(){return Description;}
-    float getPrix(){return prix;}
+    QString getPrix(){return prix;}
     int getstatus(){return status;}
     int getType(){return type;}
 
@@ -33,7 +33,7 @@ public:
     void setCin(int cin){Cin_prop=cin;}
     void setAdresse(QString adr){Adresse=adr;}
     void setDescription(QString desc){Description=desc;}
-    void setPrix(float price){prix=price;}
+    void setPrix(QString price){prix=price;}
     void setstatus(int stat){status=stat;}
     void setType(int tp){type=tp;}
 
