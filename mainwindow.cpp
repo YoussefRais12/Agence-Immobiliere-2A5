@@ -28,7 +28,7 @@ void MainWindow::on_pushButton_clicked()
 
     int ID_TRANSACTION=ui->id_transaction->text().toInt();
     QString DATE = ui->date_transaction->date().toString();
-    float MONTANT=ui->montant_transaction->text().toFloat();
+    QString MONTANT=ui->montant_transaction->text();
     int DEBIT_CREDIT=ui->debit_transaction->text().toInt();
     QString DESCRIPTION=ui->description_transaction->text();
     transactions t(ID_TRANSACTION,DATE,MONTANT,DESCRIPTION,DEBIT_CREDIT);
@@ -112,9 +112,10 @@ void MainWindow::on_pushButton_4_clicked()
 
     int ID=ui->comboboxmodif->currentText().toInt();
     QString DATE = ui->date_transaction_2->date().toString();
-    float MONTANT=ui->montant_transaction_2->text().toFloat();
+    QString MONTANT=ui->montant_transaction_2->text();
     int DEBIT_CREDIT=ui->debit_transaction_2->text().toInt();
     QString DESCRIPTION=ui->description_transaction_2->text();
+
     transactions t(ID,DATE,MONTANT,DESCRIPTION,DEBIT_CREDIT);
     if(montanttest.isEmpty() || debittest.isEmpty() || DESCRIPTION.isEmpty() || idtest.isEmpty())
                      {

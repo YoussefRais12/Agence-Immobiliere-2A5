@@ -283,6 +283,24 @@ font-size:15px;
         </rect>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_13">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>390</y>
+         <width>150</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Calcul Gain</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="modifier">
@@ -526,8 +544,8 @@ font-size:15px;
       <widget class="QLabel" name="label_16">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>40</y>
+         <x>10</x>
+         <y>60</y>
          <width>91</width>
          <height>31</height>
         </rect>
@@ -622,7 +640,7 @@ font-size:15px;
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>170</y>
+         <y>250</y>
          <width>150</width>
          <height>19</height>
         </rect>
@@ -640,7 +658,7 @@ font-size:15px;
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>170</y>
+         <y>250</y>
          <width>150</width>
          <height>19</height>
         </rect>
@@ -657,8 +675,8 @@ font-size:15px;
       <widget class="QComboBox" name="comboboxsup">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>50</y>
+         <x>90</x>
+         <y>70</y>
          <width>151</width>
          <height>22</height>
         </rect>
@@ -668,7 +686,7 @@ font-size:15px;
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>100</y>
+         <y>120</y>
          <width>150</width>
          <height>19</height>
         </rect>
@@ -680,6 +698,24 @@ font-size:15px;
        </property>
        <property name="text">
         <string>Afficher </string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_14">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>150</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Historique</string>
        </property>
       </widget>
      </widget>
@@ -709,8 +745,8 @@ font-size:15px;
      <widget class="QPushButton" name="pushButton_9">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>420</y>
+        <x>210</x>
+        <y>360</y>
         <width>150</width>
         <height>19</height>
        </rect>
@@ -727,8 +763,8 @@ font-size:15px;
      <widget class="QPushButton" name="pushButton_10">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>380</y>
+        <x>40</x>
+        <y>360</y>
         <width>150</width>
         <height>19</height>
        </rect>
@@ -742,37 +778,6 @@ font-size:15px;
        <string>Recherche</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="id_transaction_3">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>380</y>
-        <width>151</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_27">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>370</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>ID : </string>
-      </property>
-     </widget>
      <widget class="QTableView" name="tableView">
       <property name="geometry">
        <rect>
@@ -781,6 +786,24 @@ font-size:15px;
         <width>571</width>
         <height>261</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_29">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>360</y>
+        <width>150</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Excel</string>
       </property>
      </widget>
     </widget>

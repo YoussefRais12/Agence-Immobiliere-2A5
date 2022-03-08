@@ -12,12 +12,10 @@ using namespace std;
 class transactions
 {
     int ID,DEBIT_CREDIT;
-    QString DESCRIPTION;
-    float MONTANT;
-    QString DATE;
+    QString DATE,MONTANT,DESCRIPTION;
 public:
     transactions();
-    transactions(int ID_TRANSACTION,QString DATE,float MONTANT,QString DESCRIPTION,int DEBIT_CREDIT );
+    transactions(int ID_TRANSACTION,QString DATE,QString MONTANT,QString DESCRIPTION,int DEBIT_CREDIT );
     QSqlQueryModel *afficher();
     bool supprimer(int id);
     bool Ajouter();

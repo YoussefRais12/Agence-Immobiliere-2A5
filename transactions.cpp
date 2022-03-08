@@ -9,7 +9,7 @@ transactions::transactions()
 {
 
 }
-transactions::transactions(int ID_TRANSACTION,QString DATE,float MONTANT, QString DESCRIPTION,int DEBIT_CREDIT)
+transactions::transactions(int ID_TRANSACTION,QString DATE,QString MONTANT, QString DESCRIPTION,int DEBIT_CREDIT)
 {
     this-> ID=ID_TRANSACTION;
     this-> DESCRIPTION=DESCRIPTION;
@@ -22,11 +22,9 @@ bool transactions::Ajouter()
     QSqlQuery query;
    // QString m=QString(MONTANT);
     QString resid= QString::number(ID);
-    //float resmontant= QString::toFloat(MONTANT);
     QString resdebit= QString::number(DEBIT_CREDIT);
-    //float num_float = std::stof(MONTANT);
 
-    query.prepare("insert into TRANSACTION (ID_T,DATE_T,DESCRIPTION_T,DEBIT_CREDIT)" "values (:ID,:DATE,:DESCRIPTION,:DEBIT_CREDIT)");
+    query.prepare("insert into TRANSACTION (ID_T,DATE_T,MONTANT_T,DESCRIPTION_T,DEBIT_CREDIT)" "values (:ID,:DATE,:MONTANT,:DESCRIPTION,:DEBIT_CREDIT)");
     query.bindValue(":ID", resid);
     query.bindValue(":DATE", DATE);
     query.bindValue(":MONTANT", MONTANT);
@@ -65,10 +63,10 @@ bool transactions::modifier()
     QString resid= QString::number(ID);
     //QString resmontant= QString::number(MONTANT);
     QString resdebit= QString::number(DEBIT_CREDIT);
-       query.prepare("update  TRANSACTION    set  DATE_T=:DATE,DESCRIPTION_T=:DESCRIPTION,DEBIT_CREDIT=:DEBIT_CREDIT where(ID_T=:ID)");
+       query.prepare("update  TRANSACTION    set  DATE_T=:DATE,MONTANT_T=:MONTANT,DESCRIPTION_T=:DESCRIPTION,DEBIT_CREDIT=:DEBIT_CREDIT where(ID_T=:ID)");
        query.bindValue(":ID", resid);
        query.bindValue(":DATE", DATE);
-       //query.bindValue(":MONTANT", resmontant);
+       query.bindValue(":MONTANT", MONTANT);
        query.bindValue(":DESCRIPTION", DESCRIPTION);
        query.bindValue(":DEBIT_CREDIT",resdebit);
 
@@ -81,9 +79,5 @@ bool transactions::modifier()
 
     else{ qDebug()<<" Echec de la mis a jour!!\n";
 }
-}
-bool controle_ajout(){
-
-
 }
 
