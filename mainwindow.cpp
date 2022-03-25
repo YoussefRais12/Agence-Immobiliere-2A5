@@ -200,19 +200,10 @@ void MainWindow::on_qrpushbutton_clicked()
 
             QVariant cinn=ui->Matricule->text().toInt();
             int matricule= cinn.toInt();
-            QSqlQuery qry;
-            qry.prepare("select * from PROPRIETE where MATRICULE=:matricule");
-            qry.bindValue(":Matricule",matricule);
-            qry.exec();
-            QString nom, prenom,cine;
 
-            while(qry.next()){
-                nom=qry.value(1).toString();
-                prenom=qry.value(2).toString();
-
-            }
-             cine=int(matricule);
-             cine="matricule: "+cine+"nom: "+nom+" prenom: "+prenom;
+            QString cine;
+            cine=int(matricule);
+            cine="matricule: "+cine;
             QrCode qr = QrCode::encodeText(cine.toUtf8().constData(), QrCode::Ecc::HIGH);
 
             // Read the black & white pixels
