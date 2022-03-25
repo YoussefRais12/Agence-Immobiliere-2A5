@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QSortFilterProxyModel>
 
 class propriete {
     int Matricule, Cin_prop, status, type;
@@ -38,7 +39,7 @@ public:
     void setType(int tp){type=tp;}
 
     bool ajouter();
-    QSqlQueryModel * afficher();
+    QSortFilterProxyModel * afficher();
     bool supprimer(int);
     bool modifier(int);
 

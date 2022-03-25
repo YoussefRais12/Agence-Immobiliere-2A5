@@ -7,6 +7,10 @@
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QApplication>
+#include <QSortFilterProxyModel>
+#include <QAbstractTableModel>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int Cin_prop, QString Adresse, QString Description, QString prix, int status, int type){
 
@@ -44,8 +48,9 @@ bool propriete::ajouter(){
 }
 
 
-QSqlQueryModel * propriete::afficher(){
-    QSqlQueryModel * model=new QSqlQueryModel();
+QSortFilterProxyModel * propriete::afficher(){
+    QSqlQueryModel * model=new QSqlQueryModel;
+    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
     model->setQuery("select MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, PRIX, STATUS, TYPE from Propriete");
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("Matricule"));
     model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
@@ -56,8 +61,9 @@ QSqlQueryModel * propriete::afficher(){
     model->setHeaderData(6,Qt::Horizontal,QObject::tr("Prix"));
     model->setHeaderData(7,Qt::Horizontal,QObject::tr("status"));
     model->setHeaderData(8,Qt::Horizontal,QObject::tr("Type"));
+    proxyModel->setSourceModel(model);
 
-    return model;
+    return proxyModel;
 }
 
 bool propriete::supprimer(int Mat) {
@@ -75,7 +81,7 @@ bool propriete::modifier(int Mat)
     //QString res_cin = QString::number(Cin_prop);
     QString res_status = QString::number(status);
     QString res_type = QString::number(type);
-    query.prepare("update Propriete set NOM_PROP=:nNOM_PROP WHERE (MATRICULE=:Mat)");
+    query.prepare("update Propriete set NOM_PROP=:NOM_PROP WHERE (MATRICULE=:Mat)");
     query.bindValue(":Mat", res);
     //query.bindValue(":CIN_PROP",Cin_prop);
     query.bindValue(":NOM_PROP", Nom_prop);

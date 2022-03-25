@@ -9,6 +9,7 @@
 #include <QTabWidget>
 #include <QMessageBox>
 #include <QDebug>
+#include <QSortFilterProxyModel>
 
 using namespace std;
 
@@ -17,7 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tableView->setSortingEnabled(true); // enable sortingEnabled
     ui->tableView->setModel(pimp.afficher());
+
 }
 
 MainWindow::~MainWindow()
@@ -152,4 +155,13 @@ void MainWindow::on_generer_clicked()
     query->exec(sql);
     model->setQuery(*query);
     ui->comboo->setModel(model);
+
+    QSqlQueryModel *model1 = new QSqlQueryModel();
+    QString sql1;
+    sql1 = "select ID From Employe";
+    query->exec(sql1);
+    model1->setQuery(*query);
+    ui->etranger->setModel(model1);
 }
+
+
