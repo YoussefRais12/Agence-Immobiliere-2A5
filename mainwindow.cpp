@@ -10,9 +10,14 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QSortFilterProxyModel>
+#include "QrCode.hpp"
+#include <QStandardItemModel>
+#include <QLabel>
+
+
 
 using namespace std;
-
+using namespace qrcodegen;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -165,3 +170,69 @@ void MainWindow::on_generer_clicked()
 }
 
 
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    propriete p;
+    QString choix=ui->comboBox->currentText();
+
+    if (choix=="Cin"){
+       QString cin=ui->chercher->text();
+       ui->tableView->setModel(p.rechercher(cin));
+    }
+
+    if (choix=="Nom"){
+        QString nom=ui->chercher->text();
+        ui->tableView->setModel(p.recherchernom(nom));
+    }
+
+    if (choix=="Matricule") {
+        QString matricule=ui->chercher->text();
+        ui->tableView->setModel(p.recherchermat(matricule));
+    }
+
+}
+
+
+
+void MainWindow::on_qrpushbutton_clicked()
+{
+
+            QVariant cinn=ui->Matricule->text().toInt();
+            int matricule= cinn.toInt();
+            QSqlQuery qry;
+            qry.prepare("select * from PROPRIETE where MATRICULE=:matricule");
+            qry.bindValue(":Matricule",matricule);
+            qry.exec();
+            QString nom, prenom,cine;
+
+            while(qry.next()){
+                nom=qry.value(1).toString();
+                prenom=qry.value(2).toString();
+
+            }
+             cine=int(matricule);
+             cine="matricule: "+cine+"nom: "+nom+" prenom: "+prenom;
+            QrCode qr = QrCode::encodeText(cine.toUtf8().constData(), QrCode::Ecc::HIGH);
+
+            // Read the black & white pixels
+            QImage im(qr.getSize(),qr.getSize(), QImage::Format_RGB888);
+            for (int y = 0; y < qr.getSize(); y++) {
+                for (int x = 0; x < qr.getSize(); x++) {
+                    int color = qr.getModule(x, y);  // 0 for white, 1 for black
+
+                    // You need to modify this part
+                    if(color==0)
+                        im.setPixel(x, y,qRgb(254, 254, 254));
+                    else
+                        im.setPixel(x, y,qRgb(0, 0, 0));
+                }
+            }
+            im=im.scaled(200,200);
+            ui->qrlabel->setPixmap(QPixmap::fromImage(im));
+            int i=0 ;
+            for(i=0;i<100;i=i+0.1){
+                i++;
+                ui->progressBar->setValue(i);
+            }
+}

@@ -43,6 +43,12 @@ public:
     bool supprimer(int);
     bool modifier(int);
 
+    bool rech(int);
+    QSqlQueryModel* rechercher(QString);
+    bool rechnom(QString);
+    QSqlQueryModel* recherchernom(QString);
+    bool rechmat(QString);
+    QSqlQueryModel* recherchermat(QString);
 };
 
 #endif // PROPRIETE_H

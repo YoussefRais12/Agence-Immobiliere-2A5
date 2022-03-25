@@ -95,3 +95,76 @@ bool propriete::modifier(int Mat)
 
 }
 
+
+bool propriete::rech(int x){
+    QSqlQuery query;
+    query.prepare("select MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, PRIX, STATUS, TYPE from PROPRIETE where CIN_PROP = :cin;");
+    query.bindValue(":cin", x);
+    return query.exec();
+}
+
+
+QSqlQueryModel* propriete::rechercher(QString a) {
+
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("select MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, PRIX, STATUS, TYPE from Propriete where CIN_PROP='"+a+"'");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("Matricule"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("CIN"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Adresse"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("Description"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("Prix"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("status"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("Type"));
+    return model;
+}
+
+bool propriete::rechnom(QString x){
+    QSqlQuery query;
+    query.prepare("select MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, PRIX, STATUS, TYPE from PROPRIETE where NOM_PROP = :nom;");
+    query.bindValue(":nom", x);
+    return query.exec();
+}
+
+
+QSqlQueryModel * propriete::recherchernom(QString a){
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, PRIX, STATUS, TYPE from PROPRIETE where NOM_PROP ='"+a+"' ");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("Matricule"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("CIN"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Adresse"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("Description"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("Prix"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("status"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("Type"));
+    return model;
+}
+
+bool propriete::rechmat(QString x){
+    QSqlQuery query;
+    query.prepare("select MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, PRIX, STATUS, TYPE from PROPRIETE where MATRICULE = :matricule;");
+    query.bindValue(":matricule", x);
+    return query.exec();
+}
+
+QSqlQueryModel * propriete::recherchermat(QString a){
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select MATRICULE, NOM_PROP, PRENOM_PROP, CIN_PROP, ADRESSE, DESCRIPTION, PRIX, STATUS, TYPE from PROPRIETE where MATRICULE ='"+a+"' ");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("Matricule"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("Nom"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("Prenom"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("CIN"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("Adresse"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("Description"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("Prix"));
+    model->setHeaderData(7,Qt::Horizontal,QObject::tr("status"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("Type"));
+    return model;
+}
+
+
