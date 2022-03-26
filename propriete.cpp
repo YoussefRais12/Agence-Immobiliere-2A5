@@ -10,6 +10,7 @@
 #include <QSortFilterProxyModel>
 #include <QAbstractTableModel>
 #include "mainwindow.h"
+#include <QVector>
 #include "ui_mainwindow.h"
 
 propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int Cin_prop, QString Adresse, QString Description, QString prix, int status, int type){
@@ -167,4 +168,65 @@ QSqlQueryModel * propriete::recherchermat(QString a){
     return model;
 }
 
-
+/*
+void propriete::statistique(QVector<double>* PlaceData)
+{
+    QSqlQuery q;
+    int i=0;
+    q.exec("select PRIX from PROPRIETE");
+    while (q.next())
+    {
+        if(q.value(0).toInt()>15)
+            i++;
+    }
+    *PlaceData<< i;
+}
+void propriete::statistique_1(QVector<double>* PlaceData)
+{
+    QSqlQuery q;
+    int i=0;
+    q.exec("select PRIX from PROPRIETE");
+    while (q.next())
+    {
+        if((q.value(0).toInt())>15&&(q.value(0).toInt()<25))
+            i++;
+    }
+    *PlaceData<< i;
+}
+void propriete::statistique_2(QVector<double>* PlaceData)
+{
+    QSqlQuery q;
+    int i=0;
+    q.exec("select PRIX from PROPRIETE");
+    while (q.next())
+    {
+        if((q.value(0).toInt())>25&&(q.value(0).toInt()<35))
+            i++;
+    }
+    *PlaceData<< i;
+}
+void propriete::statistique_3(QVector<double>* PlaceData)
+{
+    QSqlQuery q;
+    int i=0;
+    q.exec("select PRIX from PROPRIETE");
+    while (q.next())
+    {
+        if((q.value(0).toInt())>35&&(q.value(0).toInt()<45))
+            i++;
+    }
+    *PlaceData<< i;
+}
+void propriete::statistique_4(QVector<double>* PlaceData)
+{
+    QSqlQuery q;
+    int i=0;
+    q.exec("select PRIX from PROPRIETE");
+    while (q.next())
+    {
+        if(q.value(0).toInt()>45)
+            i++;
+    }
+    *PlaceData<< i;
+}
+*/

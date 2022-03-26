@@ -13,8 +13,12 @@
 #include "QrCode.hpp"
 #include <QStandardItemModel>
 #include <QLabel>
-
-
+#include <QGeoAddress>
+#include <QGeoCodingManager>
+#include <QGeoCoordinate>
+#include <QGeoLocation>
+#include <QGeoServiceProvider>
+#include <QApplication>
 
 using namespace std;
 using namespace qrcodegen;
@@ -23,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->quickWidget->setSource(QUrl(QStringLiteral("qrc:/Map.qml")));
+    ui->quickWidget->show();
+
     ui->tableView->setSortingEnabled(true); // enable sortingEnabled
     ui->tableView->setModel(pimp.afficher());
 
@@ -163,10 +170,10 @@ void MainWindow::on_generer_clicked()
 
     QSqlQueryModel *model1 = new QSqlQueryModel();
     QString sql1;
-    sql1 = "select ID From Employe";
+    sql1 = "select Matricule From Propriete";
     query->exec(sql1);
     model1->setQuery(*query);
-    ui->etranger->setModel(model1);
+    ui->combo->setModel(model1);
 }
 
 
@@ -226,4 +233,9 @@ void MainWindow::on_qrpushbutton_clicked()
                 i++;
                 ui->progressBar->setValue(i);
             }
+}
+
+void MainWindow::on_map_clicked()
+{
+
 }

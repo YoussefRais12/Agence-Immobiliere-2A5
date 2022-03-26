@@ -3,6 +3,9 @@
 #include "propriete.h"
 #include <QMainWindow>
 #include <QLabel>
+#include <QSsl>
+#include <QSslError>
+#include <QSslCertificate>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +34,8 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_qrpushbutton_clicked();
+
+    void on_map_clicked();
 
 private:
     Ui::MainWindow *ui;

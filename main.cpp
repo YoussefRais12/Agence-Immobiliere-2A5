@@ -2,6 +2,14 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
+#include <QGeoAddress>
+#include <QGeoCodingManager>
+#include <QGeoCoordinate>
+#include <QGeoLocation>
+#include <QGeoServiceProvider>
+#include <QSsl>
+#include <QSslError>
+#include <QSslCertificate>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

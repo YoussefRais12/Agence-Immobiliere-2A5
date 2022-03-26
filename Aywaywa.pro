@@ -3,7 +3,11 @@ QT+= sql
 QT       += network
 QT+=multimedia
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += widgets
+QT += positioning
+QT += location
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quickwidgets
 
 CONFIG += c++11
 CONFIG += console
@@ -40,3 +44,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    qml.qrc

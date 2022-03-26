@@ -49,6 +49,11 @@ public:
     QSqlQueryModel* recherchernom(QString);
     bool rechmat(QString);
     QSqlQueryModel* recherchermat(QString);
+    void statistique(QVector<double>* ticks);
+    void statistique_1(QVector<double>* PlaceData);
+    void statistique_2(QVector<double>* PlaceData);
+    void statistique_3(QVector<double>* PlaceData);
+    void statistique_4(QVector<double>* PlaceData);
 };
 
 #endif // PROPRIETE_H
