@@ -8,6 +8,14 @@
 #include <QTabWidget>
 #include <QMessageBox>
 #include <QSqlQueryModel>
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
+#include <QObject>
+#include <QTableView>
+#include <QStringList>
+#include <QFileDialog>
+#include "exportexcelobject.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -32,7 +40,7 @@ void MainWindow::on_pushButton_clicked()
     int DEBIT_CREDIT=ui->debit_transaction->text().toInt();
     QString DESCRIPTION=ui->description_transaction->text();
     transactions t(ID_TRANSACTION,DATE,MONTANT,DESCRIPTION,DEBIT_CREDIT);
-    ui->tableView->setModel(t.afficher());
+
     if(idtest.isEmpty() || montanttest.isEmpty() || debittest.isEmpty() || DESCRIPTION.isEmpty())
                      {
                          QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("Saisir les champs ."),QMessageBox::Cancel);
@@ -47,9 +55,11 @@ void MainWindow::on_pushButton_clicked()
         else {
 
     bool test=t.Ajouter();
-
         if (test){
             QMessageBox::information(nullptr, QObject::tr("OK"), QObject::tr("ajout effectue\n"),QMessageBox::Cancel);
+            ui->tableView->setModel(t.afficher());
+
+
         }
         else
             QMessageBox::critical(nullptr, QObject::tr("Not Okay"), QObject::tr("ajout non effectue\n"),QMessageBox::Cancel);
@@ -146,6 +156,8 @@ void MainWindow::on_pushButton_7_clicked()
 // ki ne7i el fonction hedhi tetle3li error le fmch el fonction hedhi 7eta b3d ma3mlt clean lil projet kml reconfiguration//
 }
 
+
+
 void MainWindow::on_pushButton_3_clicked()
 {
     ui->montant_transaction_2->clear();
@@ -160,3 +172,63 @@ void MainWindow::on_pushButton_2_clicked()
   ui->description_transaction->clear();
   ui->debit_transaction->clear();
 }
+
+void MainWindow::on_pushButton_32_clicked()
+{
+    QString id=ui->id_transaction_2->text();
+    ui->tableView2->setModel(t.recherche(id));
+
+}
+
+void MainWindow::on_pushButton_34_clicked()
+{
+    ui->tableView3->setModel(t.tridesc());
+}
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    QFile file("historique.txt");
+    if(!file.open(QIODevice::ReadOnly)){
+        qCritical() << "file not found ";
+        qCritical() << file.errorString();
+
+    }
+    QTextStream in(&file);
+    ui->textBrowser->setText(in.readAll());
+}
+
+
+void MainWindow::on_pushButton_38_clicked()
+{
+    //float a=t.calculgain();
+    //qDebug() << a ;
+
+}
+
+void MainWindow::on_pushButton_29_clicked()
+{
+
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Excel file"), qApp->applicationDirPath (),
+                                                        tr("Excel Files (*.xls)"));
+        if (fileName.isEmpty())
+            return;
+
+        ExportExcelObject obj(fileName, "mydata", ui->tableView);
+
+        obj.addField(0, "ID_T", "char(20)");
+        obj.addField(1, "DATE_T", "char(20)");
+        obj.addField(2, "MONTANT_T", "char(20)");
+        obj.addField(3, "DESCRIPTION_T", "char(20)");
+        obj.addField(4, "DEBIT_CREDIT", "char(20)");
+
+
+
+
+        int retVal = obj.export2Excel();
+        if( retVal > 0)
+        {
+            QMessageBox::information(this, tr("Done"),
+                                     QString(tr("%1 Transactions a été enregistrée !")).arg(retVal)
+                                     );
+        }
+    }

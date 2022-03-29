@@ -18,12 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     connection.cpp \
+    exportexcelobject.cpp \
     main.cpp \
     mainwindow.cpp \
     transactions.cpp
 
 HEADERS += \
     connection.h \
+    exportexcelobject.h \
     mainwindow.h \
     transactions.h
 
