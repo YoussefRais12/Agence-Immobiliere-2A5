@@ -150,14 +150,6 @@ void MainWindow::on_pushButton_4_clicked()
 }
 
 
-
-void MainWindow::on_pushButton_7_clicked()
-{
-// ki ne7i el fonction hedhi tetle3li error le fmch el fonction hedhi 7eta b3d ma3mlt clean lil projet kml reconfiguration//
-}
-
-
-
 void MainWindow::on_pushButton_3_clicked()
 {
     ui->montant_transaction_2->clear();
