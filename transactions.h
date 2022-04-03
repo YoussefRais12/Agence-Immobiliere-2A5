@@ -20,11 +20,9 @@ public:
     bool supprimer(int id);
     bool Ajouter();
     bool modifier();
-    QSqlQueryModel *recherche(QString);
-    QSqlQueryModel *triasc();
-    QSqlQueryModel *tridesc();
+    QSqlQueryModel *recherche(QString,int);
+    QSqlQueryModel *tri(int,int);
     float calculgain();
-    //QSqlQueryModel *afficherhistorique();
 
 };
 

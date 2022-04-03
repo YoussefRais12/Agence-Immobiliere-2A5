@@ -175,14 +175,44 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_32_clicked()
 {
-    QString id=ui->id_transaction_2->text();
-    ui->tableView2->setModel(t.recherche(id));
+    int who;
+    QString a=ui->combo_rech->currentText();
+    if (a=="ID"){
+      who=1;
+    }
+    else if (a=="Montant"){
+        who=2;
+    }
+    else if (a=="Description"){
+        who=3;
+    }
+    QString b=ui->who_rech->text();
+    ui->tableView2->setModel(t.recherche(b,who));
 
 }
 
 void MainWindow::on_pushButton_34_clicked()
 {
-    ui->tableView3->setModel(t.tridesc());
+    int w,m ;
+    QString a=ui->combo_tri->currentText();
+    QString b=ui->combo_tri_mode->currentText();
+    if (a=="ID"){
+      w=1;
+    }
+    else if (a=="Description"){
+        w=2;
+    }
+    else if (a=="Debit_Credit"){
+        w=3;
+    }
+    if (b=="Croissant"){
+        m=1;
+    }
+    else {
+        m=0;
+    }
+
+    ui->tableView3->setModel(t.tri(w,m));
 }
 
 void MainWindow::on_pushButton_15_clicked()
@@ -232,3 +262,8 @@ void MainWindow::on_pushButton_29_clicked()
                                      );
         }
     }
+
+void MainWindow::on_pushButton_31_clicked()
+{
+    ui->who_rech->clear();
+}

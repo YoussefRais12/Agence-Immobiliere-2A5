@@ -99,31 +99,59 @@ bool transactions::modifier()
     else{ qDebug()<<" Echec de la mis a jour!!\n";
 }
 }
-QSqlQueryModel * transactions::recherche(QString id)
+QSqlQueryModel * transactions::recherche(QString b,int who)
 {
 
     QSqlQueryModel *a=new::QSqlQueryModel;
+        if (who==1){
+            a->setQuery("select * from  TRANSACTION where ID_T like '%"+b+"%'");
+        }
+        else if (who==2){
+            a->setQuery("select * from  TRANSACTION where MONTANT_T like '%"+b+"%'");
 
-        a->setQuery("select * from  TRANSACTION where ID_T like '%"+id+"%'");
+        }
+        else if (who==3){
+            a->setQuery("select * from  TRANSACTION where DESCRIPTION_T like '%"+b+"%'");
+
+        }
+
 
                return a;
 
 
 }
-QSqlQueryModel * transactions::triasc()
+QSqlQueryModel * transactions::tri(int a,int b)
 {
     QSqlQueryModel * model= new QSqlQueryModel();
+        if (a==1){
+            if (b==1){
         model->setQuery("SELECT * FROM TRANSACTION ORDER BY ID_T ASC");
+            }
+            else {
+              model->setQuery("SELECT * FROM TRANSACTION ORDER BY ID_T DESC");
+            }
+        }
+        else if (a==2){
+            if (b==1){
+        model->setQuery("SELECT * FROM TRANSACTION ORDER BY DESCRIPTION_T ASC");
+            }
+            else {
+              model->setQuery("SELECT * FROM TRANSACTION ORDER BY DESCRIPTION_T DESC");
+            }
+        }
+        else if (a==3){
+            if (b==1){
+        model->setQuery("SELECT * FROM TRANSACTION ORDER BY DEBIT_CREDIT ASC");
+            }
+            else {
+              model->setQuery("SELECT * FROM TRANSACTION ORDER BY DEBIT_CREDIT DESC");
+            }
+        }
         return model;
 }
-QSqlQueryModel * transactions::tridesc()
-{
-    QSqlQueryModel * model= new QSqlQueryModel();
-        model->setQuery("SELECT * FROM TRANSACTION ORDER BY ID_T DESC");
-        return model;
-}
-/*float transactions::calculgain(){
 
+/*float transactions::calculgain(){
+   (in progress :) )
     float a,b=0;
     QString c;
 QString resdebit= QString::number(DEBIT_CREDIT);

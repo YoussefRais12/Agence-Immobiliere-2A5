@@ -17,7 +17,6 @@ int ExportExcelObject::export2Excel()
         qDebug() << "ExportExcelObject::export2Excel failed: QODBC not supported.";
         return -2;
     }
-    // set the dsn string
     QString dsn = QString("DRIVER={Microsoft Excel Driver (*.xls)};DSN='';FIRSTROWHASNAMES=1;READONLY=FALSE;CREATE_DB=\"%1\";DBQ=%2").
                   arg(excelFilePath).arg(excelFilePath);
     db.setDatabaseName(dsn);
@@ -30,11 +29,9 @@ int ExportExcelObject::export2Excel()
 
     QSqlQuery query(db);
 
-    //drop the table if it's already exists
     QString s, sSql = QString("DROP TABLE [%1] (").arg(sheetName);
     query.exec(sSql);
 
-    //create the table (sheet in Excel file)
     sSql = QString("CREATE TABLE [%1] (").arg(sheetName);
     for (int i = 0; i < fieldList.size(); i++)
     {
@@ -50,14 +47,12 @@ int ExportExcelObject::export2Excel()
     if(!query.exec())
     {
         qDebug() << "ExportExcelObject::export2Excel failed: Create Excel sheet failed.";
-        //db.close();
-        //QSqlDatabase::removeDatabase("excelexport");
+
         return -4;
     }
 
 
 
-    //add all rows
     sSql = QString("INSERT INTO [%1] (").arg(sheetName);
     for (int i = 0; i < fieldList.size(); i++)
     {
