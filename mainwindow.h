@@ -25,17 +25,15 @@ private slots:
 
     void on_confirmer_clicked();
 
-    void on_pushButton_4_clicked();
-
     void on_pushButton_clicked();
-
-    void on_generer_clicked();
 
     void on_pushButton_2_clicked();
 
     void on_qrpushbutton_clicked();
 
     void on_map_clicked();
+
+    void on_tabWidget_currentChanged(int index);
 
 private:
     Ui::MainWindow *ui;

@@ -118,19 +118,6 @@ void MainWindow::on_confirmer_clicked()
 }
 }
 
-void MainWindow::on_pushButton_4_clicked()
-{
-    QSqlQueryModel *model = new QSqlQueryModel();
-    QString sql;
-    sql = "select Matricule From Propriete";
-    QSqlDatabase db = QSqlDatabase::database("QODBC");
-    QSqlQuery* query=new QSqlQuery(db);
-    query->exec(sql);
-    model->setQuery(*query);
-    ui->combo->setModel(model);
-}
-
-
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -146,7 +133,7 @@ void MainWindow::on_pushButton_clicked()
     propriete p(Mat,Nom,Prenom,Cin_prop,Adresse,Description,price,status,type);
 
 
-    bool test=pimp.modifier(Mat);
+    bool test=p.modifier(Mat);
     if(test) {
         QMessageBox::information(nullptr, QObject::tr("OK"), QObject::tr(" MODIFIED\n"),QMessageBox::Cancel);
     }
@@ -155,25 +142,6 @@ void MainWindow::on_pushButton_clicked()
         QMessageBox::critical(nullptr, QObject::tr("Not Okay"), QObject::tr("Couldn't MODIFY\n"),QMessageBox::Cancel);
 
     }
-}
-
-void MainWindow::on_generer_clicked()
-{
-    QSqlQueryModel *model = new QSqlQueryModel();
-    QString sql;
-    sql = "select Matricule From Propriete";
-    QSqlDatabase db = QSqlDatabase::database("QODBC");
-    QSqlQuery* query=new QSqlQuery(db);
-    query->exec(sql);
-    model->setQuery(*query);
-    ui->comboo->setModel(model);
-
-    QSqlQueryModel *model1 = new QSqlQueryModel();
-    QString sql1;
-    sql1 = "select Matricule From Propriete";
-    query->exec(sql1);
-    model1->setQuery(*query);
-    ui->combo->setModel(model1);
 }
 
 
@@ -228,14 +196,29 @@ void MainWindow::on_qrpushbutton_clicked()
             }
             im=im.scaled(200,200);
             ui->qrlabel->setPixmap(QPixmap::fromImage(im));
-            int i=0 ;
-            for(i=0;i<100;i=i+0.1){
-                i++;
-                ui->progressBar->setValue(i);
-            }
+
 }
 
 void MainWindow::on_map_clicked()
 {
 
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
+    QString sql;
+    sql = "select Matricule From Propriete";
+    QSqlDatabase db = QSqlDatabase::database("QODBC");
+    QSqlQuery* query=new QSqlQuery(db);
+    query->exec(sql);
+    model->setQuery(*query);
+    ui->comboo->setModel(model);
+
+    QSqlQueryModel *model1 = new QSqlQueryModel();
+    QString sql1;
+    sql1 = "select Matricule From Propriete";
+    query->exec(sql1);
+    model1->setQuery(*query);
+    ui->combo->setModel(model1);
 }

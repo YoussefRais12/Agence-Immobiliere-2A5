@@ -61,7 +61,7 @@ background-color: rgb(255, 140, 0);
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -72,7 +72,7 @@ background-color: rgb(255, 140, 0);
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>961</width>
+        <width>1031</width>
         <height>541</height>
        </rect>
       </property>
@@ -262,8 +262,8 @@ background-color: rgb(255, 140, 0);
       <widget class="QPushButton" name="qrpushbutton">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>70</y>
+         <x>360</x>
+         <y>480</y>
          <width>150</width>
          <height>19</height>
         </rect>
@@ -331,7 +331,7 @@ background-color: rgb(255, 140, 0);
       <widget class="QLabel" name="qrlabel">
        <property name="geometry">
         <rect>
-         <x>600</x>
+         <x>370</x>
          <y>40</y>
          <width>151</width>
          <height>141</height>
@@ -339,22 +339,6 @@ background-color: rgb(255, 140, 0);
        </property>
        <property name="text">
         <string/>
-       </property>
-      </widget>
-      <widget class="QProgressBar" name="progressBar">
-       <property name="geometry">
-        <rect>
-         <x>430</x>
-         <y>120</y>
-         <width>118</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 140, 0);</string>
-       </property>
-       <property name="value">
-        <number>24</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="post">
@@ -399,20 +383,20 @@ background-color: rgb(255, 140, 0);
       <widget class="QPushButton" name="map">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>390</y>
+         <x>860</x>
+         <y>180</y>
          <width>150</width>
          <height>19</height>
         </rect>
        </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>Map</string>
        </property>
       </widget>
       <widget class="QQuickWidget" name="quickWidget">
        <property name="geometry">
         <rect>
-         <x>470</x>
+         <x>540</x>
          <y>210</y>
          <width>471</width>
          <height>321</height>
@@ -499,7 +483,7 @@ background-color: rgb(255, 140, 0);
         </rect>
        </property>
        <property name="text">
-        <string>Load</string>
+        <string>Annuler</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="typeprop">
@@ -722,7 +706,7 @@ background-color: rgb(255, 140, 0);
         </rect>
        </property>
        <property name="text">
-        <string>Generer</string>
+        <string>Annuler</string>
        </property>
       </widget>
      </widget>
@@ -825,6 +809,11 @@ background-color: rgb(255, 140, 0);
        </property>
       </widget>
      </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Statistiques</string>
+     </attribute>
     </widget>
    </widget>
   </widget>
