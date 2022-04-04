@@ -22,7 +22,7 @@ public:
     bool modifier();
     QSqlQueryModel *recherche(QString,int);
     QSqlQueryModel *tri(int,int);
-    float calculgain();
+    //QString calculgain();
 
 };
 

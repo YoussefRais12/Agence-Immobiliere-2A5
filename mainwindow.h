@@ -42,6 +42,10 @@ private slots:
 
     void on_pushButton_31_clicked();
 
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_9_clicked();
+
 private:
     Ui::MainWindow *ui;
     transactions t;

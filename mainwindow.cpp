@@ -15,6 +15,7 @@
 #include <QTableView>
 #include <QStringList>
 #include <QFileDialog>
+#include <QTextEdit>
 #include "exportexcelobject.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
    ui->tableView->setModel(t.afficher());
+   ui->id_transaction->setValidator( new QIntValidator(11111111, 99999999, this) );
+   ui->debit_transaction->setValidator( new QIntValidator(0, 1, this) );
 }
 
 MainWindow::~MainWindow()
@@ -30,7 +33,10 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_pushButton_clicked()
-{   QString idtest=ui->id_transaction->text();
+{
+
+
+    QString idtest=ui->id_transaction->text();
     QString montanttest=ui->montant_transaction->text();
     QString debittest=ui->debit_transaction->text();
 
@@ -39,6 +45,9 @@ void MainWindow::on_pushButton_clicked()
     QString MONTANT=ui->montant_transaction->text();
     int DEBIT_CREDIT=ui->debit_transaction->text().toInt();
     QString DESCRIPTION=ui->description_transaction->text();
+
+
+
     transactions t(ID_TRANSACTION,DATE,MONTANT,DESCRIPTION,DEBIT_CREDIT);
 
     if(idtest.isEmpty() || montanttest.isEmpty() || debittest.isEmpty() || DESCRIPTION.isEmpty())
@@ -49,7 +58,7 @@ void MainWindow::on_pushButton_clicked()
         if (idtest.length()!=8){
             QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("La longuere de ID transaction doit étre de 8 chiffres ."),QMessageBox::Cancel);
         }
-        else if ((DEBIT_CREDIT!=0) && (DEBIT_CREDIT!=1)){
+        else if (debittest.length()!=1){
             QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("Debit credit doit 0 ou 1  ."),QMessageBox::Cancel);
         }
         else {
@@ -64,7 +73,9 @@ void MainWindow::on_pushButton_clicked()
         else
             QMessageBox::critical(nullptr, QObject::tr("Not Okay"), QObject::tr("ajout non effectue\n"),QMessageBox::Cancel);
 }
+
 }
+
 }
 
 
@@ -222,8 +233,134 @@ void MainWindow::on_pushButton_15_clicked()
 
 void MainWindow::on_pushButton_38_clicked()
 {
-    //float a=t.calculgain();
-    //qDebug() << a ;
+
+    float a =0,b=0,max_t0=0,max_t1=0,min_t0=0,min_t1=0,c=0,s0=0,s1=0;int nb_t,debit0,debit1;
+    QSqlQuery query,query2;
+    query.prepare("SELECT MONTANT_T FROM TRANSACTION WHERE DEBIT_CREDIT = 1");
+    query.exec();
+    while(query.next()) {
+        QString stock = query.value(0).toString();
+        a =a+stock.toFloat();
+
+    }
+    query.prepare("SELECT MONTANT_T FROM TRANSACTION WHERE DEBIT_CREDIT = 0");
+    query.exec();
+    while(query.next()) {
+        QString stock = query.value(0).toString();
+        b =b+stock.toFloat();
+
+    }
+
+
+    query.prepare("SELECT count(*) FROM TRANSACTION ");
+    query.exec();
+    if(query.next()){
+        nb_t= query.value(0).toInt();
+    }
+    query.prepare("SELECT count (MONTANT_T) FROM TRANSACTION where DEBIT_CREDIT= 0 ");
+    query.exec();
+    if(query.next()){
+        debit0= query.value(0).toInt();
+    }
+    query.prepare("SELECT count (MONTANT_T) FROM TRANSACTION where DEBIT_CREDIT= 1 ");
+    query.exec();
+    if(query.next()){
+        debit1= query.value(0).toInt();
+    }
+
+    query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 0 ");
+    query.exec();
+    while(query.next()){
+        c= query.value(0).toFloat();
+        if (max_t0<c){
+            max_t0=c;
+            min_t0=c;
+        }
+    }
+    query2.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 0 ");
+    query2.exec();
+
+    while(query2.next()){
+        c= query2.value(0).toFloat();
+        if (min_t0>c){
+            min_t0=c;
+        }
+    }
+
+
+
+
+    query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 1 ");
+    query.exec();
+    while(query.next()){
+        c= query.value(0).toFloat();
+        if (max_t1<c){
+            max_t1=c;
+            min_t1=c;
+        }
+    }
+    query2.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 1 ");
+    query2.exec();
+    while(query2.next()){
+        c= query2.value(0).toFloat();
+        if (min_t1>c){
+            min_t1=c;
+        }
+    }
+    query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 0 ");
+    query.exec();
+    while(query.next()){
+        s0+= query.value(0).toFloat();
+
+    }
+    query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 1 ");
+    query.exec();
+    while(query.next()){
+        s1+= query.value(0).toFloat();
+
+    }
+
+
+
+
+    /*qDebug() << a ;
+    qDebug() << b ;
+    qDebug() << "le nombre des transactions : "<<nb_t;
+    qDebug() <<debit1<< "Transactions de debit credit 1 ( somme ="<<s1<< ")";
+    qDebug() <<debit0<< "Transaction de debit credit 0 ( somme ="<<s0<< ")";
+    qDebug() <<"la transaction maximale de debit '0' " <<max_t0<<"DT";
+    qDebug() <<"la transaction minimale de debit '0' " <<min_t0<<"DT";
+    qDebug() <<"la transaction maximale de debit '1' " <<max_t1<<"DT";
+    qDebug() <<"la transaction minimale de debit '1' " <<min_t1<<"DT";*/
+    float r=a-b;
+    QString snb_t = QString::number(nb_t);
+    QString smax_t0 = QString::number(max_t0);
+    QString smax_t1 = QString::number(max_t1);
+    QString smin_t0 = QString::number(min_t0);
+    QString smin_t1 = QString::number(min_t1);
+    QString ss1 = QString::number(s1);
+    QString sdebit0 = QString::number(debit0);
+    QString sdebit1 = QString::number(debit1);
+    QString ss0 = QString::number(s0);
+    QString sr = QString::number(r);
+    ui->textEdit->setReadOnly(true);
+    ui->textEdit->append("[ * ] Le nombre des transactions : "+snb_t+"\n" );
+    ui->textEdit->append("[ * ] "+sdebit1+" Transaction de debit credit ' 1 ' ( somme = "+ss1+ " DT)\n");
+    ui->textEdit->append("[ * ] "+sdebit0+" Transaction de debit credit ' 0 ' ( somme = "+ss0+ " DT)\n");
+    ui->textEdit->append("[ * ] La transaction maximale de debit credit ' 0 ' : " +smax_t0+" DT\n");
+    ui->textEdit->append("[ * ] La transaction minimale de debit credit ' 0 ' : " +smin_t0+" DT\n");
+    ui->textEdit->append("[ * ] La transaction maximale de debit credit ' 1 ' : " +smax_t1+" DT\n");
+    ui->textEdit->append("[ * ] La transaction minimale de debit credit ' 1 ' : " +smin_t1+" DT\n");
+
+    //QString astring=QString::number(a);
+    if (a<b){
+        ui->textEdit->append("[ - ] Aucun gain dans les transactions\n ");
+    }
+    else if (a>b){
+        ui->textEdit->append("[ + ] Votre gain est :  "+sr+" DT\n ");
+    }
+
+
 
 }
 
@@ -257,5 +394,38 @@ void MainWindow::on_pushButton_29_clicked()
 
 void MainWindow::on_pushButton_31_clicked()
 {
+
     ui->who_rech->clear();
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
+      QString sql;
+      sql = "select NUMERO_CONTRAT From CONTRAT";
+      QSqlDatabase db = QSqlDatabase::database("QODBC");
+      QSqlQuery* query=new QSqlQuery(db);
+      query->exec(sql);
+      model->setQuery(*query);
+      ui->comboboxajout->setModel(model);
+
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    QSqlQuery query;QString a,b ;
+    a=ui->comboboxajout->currentText();
+   //qDebug()<<"a= "<<a;
+    query.prepare("SELECT CONTENU,PRIXFINAL FROM CONTRAT where NUMERO_CONTRAT=? ");
+     query.addBindValue(a);
+    query.exec();
+    while(query.next()){
+    a=query.value(0).toString();
+     b=query.value(1).toString();
+   /* qDebug()<<"a= "<<a;
+    qDebug()<<"b= "<<b;*/
+    }
+    ui->description_transaction->setText(a);
+    ui->montant_transaction->setText(b);
+    ui->debit_transaction->setText("1");
 }
