@@ -6,6 +6,8 @@ QT+=multimedia
 QT += widgets
 QT += positioning
 QT += location
+QT += charts
+QT += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quickwidgets
 
@@ -28,13 +30,15 @@ SOURCES += \
     connection.cpp \
     main.cpp \
     mainwindow.cpp \
-    propriete.cpp
+    propriete.cpp \
+    qcustomplot.cpp
 
 HEADERS += \
     QrCode.hpp \
     connection.h \
     mainwindow.h \
-    propriete.h
+    propriete.h \
+    qcustomplot.h
 
 FORMS += \
     mainwindow.ui \

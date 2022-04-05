@@ -36,18 +36,7 @@ Rectangle {
         copyrightsVisible: false
         focus: true
 
-        MouseArea
-        {
-            anchors.fill: map
-            hoverEnabled: true
-            onPositionChanged:  {
 
-                lat.text ="Lat :"+ map.toCoordinate(Qt.point(mouseX,mouseY)).latitude.toString()
-                lon.text ="Lon :"+ map.toCoordinate(Qt.point(mouseX,mouseY)).longitude.toString()
-
-            }
-
-        }
 
         property Component itemDelegate: Component{
             Rectangle {
@@ -81,13 +70,117 @@ Rectangle {
 
         Rectangle
         {
-            width: 251
-            height: 163
+            width: 210
+            height: 100
             color: "#ffffff"
             border.color: "#000000"
             border.width: 1
 
             TextInput {
+                id: textInput_x
+                x: 68
+                y: 25
+                width: 175
+                height: 30
+                font.pixelSize: 16
+                //validator: DoubleValidator {bottom: -90.00; top: 90.00;}
+                //focus: true
+
+            }
+
+
+            Label {
+                id: label
+                x: 20
+                y: 25
+                width: 53
+                height: 30
+                text: qsTr("Pays:")
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+
+            Button {
+                x: 3
+                y: 55
+                width: 70
+                height: 36
+                text:               "OK"
+                Layout.fillWidth:   true
+
+                TextInput {
+                    id: textInput_t
+                    x: 68
+                    y: 60
+                    width: 0
+                    height: 0
+                    font.pixelSize: 1
+                    focus: true
+                    text:"33"
+
+
+                }
+
+
+                TextInput {
+                    id: textInput_p
+                    x: 68
+                    y: 60
+                    width: 0
+                    height: 0
+                    font.pixelSize: 1
+                    focus: true
+                    text:"9"
+
+                }
+
+                TextInput {
+                    id: textInput_f
+                    x: 68
+                    y: 60
+                    width: 0
+                    height: 0
+                    font.pixelSize: 1
+                    focus: true
+                    text:"3"
+
+                }
+
+                TextInput {
+                    id: textInput_ff
+                    x: 68
+                    y: 60
+                    width: 0
+                    height: 0
+                    font.pixelSize: 1
+                    focus: true
+                    text:"46"
+
+                }
+
+                onClicked: {
+                    if(textInput_x.text==="Tunisie"){
+                     item_model.append({"latitudeval":textInput_t.text,"longitudeval":textInput_p.text});
+                    }
+                    else if(textInput_x.text==="France"){
+                        item_model.append({"latitudeval":textInput_ff.text,"longitudeval":textInput_f.text});
+                       }
+                }
+            }
+        }
+
+
+
+
+
+
+    }
+    }
+
+
+
+/*
+ TextInput {
                 id: textInput_x
                 x: 68
                 y: 25
@@ -143,47 +236,5 @@ Rectangle {
                     item_model.append({"latitudeval":textInput_y.text,"longitudeval":textInput_x.text});
 
                     console.log(waypointCoord.longitude, waypointCoord.latitude)
-                }
-            }
-        }
-
-
-
-
-
-
-        Rectangle {
-            width: 206
-            height: 50
-            color: "white"
-            anchors.top: parent.bottom
-            anchors.topMargin: -50
-            anchors.left: parent.right
-            anchors.leftMargin: -206
-
-            Text {
-                id: lat
-                width: 206
-                height: 24
-
-            }
-
-            Text {
-                id: lon
-                x: 0
-                y: 24
-                width: 206
-                height: 26
-
-            }
-
-
-        }
-
-    }
-    }
-
-
-
-
+*/
 

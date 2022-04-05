@@ -61,7 +61,7 @@ background-color: rgb(255, 140, 0);
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -75,6 +75,11 @@ background-color: rgb(255, 140, 0);
         <width>1031</width>
         <height>541</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Shell Dlg 2</family>
+       </font>
       </property>
       <property name="title">
        <string>Ajouter une propriete</string>
@@ -148,7 +153,7 @@ background-color: rgb(255, 140, 0);
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>280</y>
+         <y>260</y>
          <width>56</width>
          <height>16</height>
         </rect>
@@ -243,7 +248,7 @@ background-color: rgb(255, 140, 0);
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>280</y>
+         <y>260</y>
          <width>113</width>
          <height>24</height>
         </rect>
@@ -341,58 +346,6 @@ background-color: rgb(255, 140, 0);
         <string/>
        </property>
       </widget>
-      <widget class="QLineEdit" name="post">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>280</y>
-         <width>51</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>code</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="ville">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>280</y>
-         <width>51</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ville</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="country">
-       <property name="geometry">
-        <rect>
-         <x>360</x>
-         <y>280</y>
-         <width>51</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>country</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="map">
-       <property name="geometry">
-        <rect>
-         <x>860</x>
-         <y>180</y>
-         <width>150</width>
-         <height>19</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Map</string>
-       </property>
-      </widget>
       <widget class="QQuickWidget" name="quickWidget">
        <property name="geometry">
         <rect>
@@ -404,6 +357,29 @@ background-color: rgb(255, 140, 0);
        </property>
        <property name="resizeMode">
         <enum>QQuickWidget::SizeRootObjectToView</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>290</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Annee construction</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="year">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>290</y>
+         <width>113</width>
+         <height>24</height>
+        </rect>
        </property>
       </widget>
      </widget>
@@ -473,7 +449,7 @@ background-color: rgb(255, 140, 0);
         <string>Modifier</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="generer">
+      <widget class="QPushButton" name="annuler">
        <property name="geometry">
         <rect>
          <x>300</x>
@@ -814,6 +790,16 @@ background-color: rgb(255, 140, 0);
      <attribute name="title">
       <string>Statistiques</string>
      </attribute>
+     <widget class="QCustomPlot" name="plot" native="true">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>170</y>
+        <width>711</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -823,6 +809,12 @@ background-color: rgb(255, 140, 0);
    <class>QQuickWidget</class>
    <extends>QWidget</extends>
    <header location="global">QtQuickWidgets/QQuickWidget</header>
+  </customwidget>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

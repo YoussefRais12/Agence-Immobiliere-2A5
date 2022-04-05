@@ -19,6 +19,18 @@
 #include <QGeoLocation>
 #include <QGeoServiceProvider>
 #include <QApplication>
+#include <QtCharts/QChartView>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QHorizontalBarSeries>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QCategoryAxis>
+#include <QPainter>
+#include <QtCharts>
 
 using namespace std;
 using namespace qrcodegen;
@@ -32,7 +44,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tableView->setSortingEnabled(true); // enable sortingEnabled
     ui->tableView->setModel(pimp.afficher());
-
+    ui->plot->setInteraction(QCP::iRangeZoom, true);
+    ui->plot->setInteraction(QCP::iRangeDrag, true);
+    ui->plot->addGraph();
+    ui->plot->graph(0)->setScatterStyle(QCPScatterStyle::ssCircle);
+    ui->plot->graph(0)->setLineStyle(QCPGraph::lsNone);
+    connect(ui->plot, SIGNAL(mouseDoubleClick(QMouseEvent*)), SLOT(clickedGraph(QMouseEvent*)));
 }
 
 MainWindow::~MainWindow()
@@ -78,7 +95,8 @@ void MainWindow::on_Ajouter_clicked()
             }
         else {
 
-
+            addPoint(ui->year->text().toDouble(),ui->price->text().toDouble());
+            plot();
     bool test=p.ajouter();
 
     if (test){
@@ -199,10 +217,6 @@ void MainWindow::on_qrpushbutton_clicked()
 
 }
 
-void MainWindow::on_map_clicked()
-{
-
-}
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
@@ -221,4 +235,64 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     query->exec(sql1);
     model1->setQuery(*query);
     ui->combo->setModel(model1);
+
+    QPieSeries *series = new QPieSeries();
+
+
+                    QSqlQuery q;
+                    q.prepare("select ville,prix from PROPRIETE  order by ville  DESC");
+                    if(q.exec())
+                  {
+                      while (q.next())
+                      {
+
+                      QString a=q.value(0).toString() ;
+                      float b= q.value(1).toFloat()  ;
+                          series->append(a+" DT", b );
+
+                  }}
+
+                QChart *chart = new QChart();
+                chart->addSeries(series);
+                chart->setAnimationOptions(QChart::SeriesAnimations);
+                chart->setTitle("donut chart repartition des client par fidele :");
+                chart->setTheme(QChart::ChartThemeLight );
+                QChartView *chartview = new QChartView(chart);
+                chartview->setRenderHint(QPainter::Antialiasing);
+                chart->legend()->setAlignment(Qt::AlignRight);
+                chartview->setParent(ui->tab_4);
+
+
+}
+
+void MainWindow::addPoint(double a, double p)
+{
+    qv_a.append(a);
+    qv_p.append(p);
+
+}
+
+
+
+void MainWindow::plot()
+{
+    ui->plot->graph(0)->setData(qv_a, qv_p);
+    ui->plot->replot();
+    ui->plot->update();
+}
+
+
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+        widget->clear();
+    }
+}
+
+void MainWindow::on_annuler_clicked()
+{
+    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>()) {
+        widget->clear();
+    }
 }

@@ -31,12 +31,19 @@ private slots:
 
     void on_qrpushbutton_clicked();
 
-    void on_map_clicked();
-
     void on_tabWidget_currentChanged(int index);
+
+    void addPoint(double a, double p);
+    void cleardata();
+    void plot();
+
+    void on_pushButton_7_clicked();
+
+    void on_annuler_clicked();
 
 private:
     Ui::MainWindow *ui;
     propriete pimp;
+    QVector<double> qv_a, qv_p;
 };
 #endif // MAINWINDOW_H

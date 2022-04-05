@@ -10,8 +10,20 @@
 #include <QSortFilterProxyModel>
 #include <QAbstractTableModel>
 #include "mainwindow.h"
-#include <QVector>
 #include "ui_mainwindow.h"
+#include <QtCharts/QChartView>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QHorizontalBarSeries>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QCategoryAxis>
+#include <QPainter>
+#include <QtCharts>
+
 
 propriete::propriete(int Matricule, QString Nom_prop, QString Prenom_prop, int Cin_prop, QString Adresse, QString Description, QString prix, int status, int type){
 
