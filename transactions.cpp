@@ -13,7 +13,7 @@ transactions::transactions()
 {
 
 }
-transactions::transactions(int ID_TRANSACTION,QString DATE,QString MONTANT, QString DESCRIPTION,int DEBIT_CREDIT)
+transactions::transactions(QString ID_TRANSACTION,QString DATE,QString MONTANT, QString DESCRIPTION,int DEBIT_CREDIT)
 {
     this-> ID=ID_TRANSACTION;
     this-> DESCRIPTION=DESCRIPTION;
@@ -24,10 +24,10 @@ transactions::transactions(int ID_TRANSACTION,QString DATE,QString MONTANT, QStr
 bool transactions::Ajouter()
 {
     QSqlQuery query;
-    QString resid= QString::number(ID);
+    //QString resid= QString::number(ID);
     QString resdebit= QString::number(DEBIT_CREDIT);
     query.prepare("insert into TRANSACTION (ID_T,DATE_T,MONTANT_T,DESCRIPTION_T,DEBIT_CREDIT)" "values (:ID,:DATE,:MONTANT,:DESCRIPTION,:DEBIT_CREDIT)");
-    query.bindValue(":ID", resid);
+    query.bindValue(":ID", ID);
     query.bindValue(":DATE", DATE);
     query.bindValue(":MONTANT", MONTANT);
     query.bindValue(":DESCRIPTION", DESCRIPTION);
@@ -43,7 +43,7 @@ bool transactions::Ajouter()
         }
         //qInfo() << "writing file ..";
         QTextStream stream(&file);
-        stream << QString() << "ID : " << resid << "\n";
+        stream << QString() << "ID : " << ID << "\n";
         stream << QString() << "Date : " << DATE<< "\n";
         stream << QString() << "Montant : " << MONTANT<< "\n";
         stream << QString() << "Description : " << DESCRIPTION<< "\n";
@@ -58,7 +58,7 @@ bool transactions::Ajouter()
 }
 QSqlQueryModel * transactions::afficher()
 {
-    QSqlQuery query; QString a;
+    QSqlQuery query;
     QSqlQueryModel * model=new QSqlQueryModel();
     model->setQuery("select * from TRANSACTION");
 
@@ -69,6 +69,7 @@ QSqlQueryModel * transactions::afficher()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Debit credit"));
     return model;
 }
+
 bool transactions::supprimer(int ID)
 {
     QSqlQuery query;
@@ -81,10 +82,10 @@ bool transactions::supprimer(int ID)
 bool transactions::modifier()
 {
     QSqlQuery query ;
-    QString resid= QString::number(ID);
+    //QString resid= QString::number(ID);
     QString resdebit= QString::number(DEBIT_CREDIT);
        query.prepare("update  TRANSACTION    set  DATE_T=:DATE,MONTANT_T=:MONTANT,DESCRIPTION_T=:DESCRIPTION,DEBIT_CREDIT=:DEBIT_CREDIT where(ID_T=:ID)");
-       query.bindValue(":ID", resid);
+       query.bindValue(":ID", ID);
        query.bindValue(":DATE", DATE);
        query.bindValue(":MONTANT", MONTANT);
        query.bindValue(":DESCRIPTION", DESCRIPTION);
@@ -153,116 +154,4 @@ QSqlQueryModel * transactions::tri(int a,int b)
 
 
 
- /*QString transactions::calculgain(){
-    // yatle3li des erreurs fi return heka ma3mlthch fonction //
 
-     float a =0,b=0,max_t0=0,max_t1=0,min_t0=0,min_t1=0,c=0,s0=0,s1=0;int nb_t,debit0,debit1;
-     QSqlQuery query,query2;
-     query.prepare("SELECT MONTANT_T FROM TRANSACTION WHERE DEBIT_CREDIT = 1");
-     query.exec();
-     while(query.next()) {
-         QString stock = query.value(0).toString();
-         a =a+stock.toFloat();
-
-     }
-     query.prepare("SELECT MONTANT_T FROM TRANSACTION WHERE DEBIT_CREDIT = 0");
-     query.exec();
-     while(query.next()) {
-         QString stock = query.value(0).toString();
-         b =b+stock.toFloat();
-
-     }
-
-
-     query.prepare("SELECT count(*) FROM TRANSACTION ");
-     query.exec();
-     if(query.next()){
-         nb_t= query.value(0).toInt();
-     }
-     query.prepare("SELECT count (MONTANT_T) FROM TRANSACTION where DEBIT_CREDIT= 0 ");
-     query.exec();
-     if(query.next()){
-         debit0= query.value(0).toInt();
-     }
-     query.prepare("SELECT count (MONTANT_T) FROM TRANSACTION where DEBIT_CREDIT= 1 ");
-     query.exec();
-     if(query.next()){
-         debit1= query.value(0).toInt();
-     }
-
-     query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 0 ");
-     query.exec();
-     while(query.next()){
-         c= query.value(0).toFloat();
-         if (max_t0<c){
-             max_t0=c;
-             min_t0=c;
-         }
-     }
-     query2.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 0 ");
-     query2.exec();
-
-     while(query2.next()){
-         c= query2.value(0).toFloat();
-         if (min_t0>c){
-             min_t0=c;
-         }
-     }
-
-
-
-
-     query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 1 ");
-     query.exec();
-     while(query.next()){
-         c= query.value(0).toFloat();
-         if (max_t1<c){
-             max_t1=c;
-             min_t1=c;
-         }
-     }
-     query2.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 1 ");
-     query2.exec();
-     while(query2.next()){
-         c= query2.value(0).toFloat();
-         if (min_t1>c){
-             min_t1=c;
-         }
-     }
-     query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 0 ");
-     query.exec();
-     while(query.next()){
-         s0+= query.value(0).toFloat();
-
-     }
-     query.prepare("SELECT MONTANT_T FROM TRANSACTION where DEBIT_CREDIT= 1 ");
-     query.exec();
-     while(query.next()){
-         s1+= query.value(0).toFloat();
-
-     }
-
-
-
-
-
-     qDebug() << a ;
-     qDebug() << b ;
-     qDebug() << "le nombres des transactions : "<<nb_t;
-     qDebug() <<debit1<< "Transactions de debit credit 1 ( somme ="<<s1<< ")";
-     qDebug() <<debit0<< "Transaction de debit credit 0 ( somme ="<<s0<< ")";
-     qDebug() <<"la transaction maximale de debit '0' " <<max_t0<<"DT";
-     qDebug() <<"la transaction minimale de debit '0' " <<min_t0<<"DT";
-     qDebug() <<"la transaction maximale de debit '1' " <<max_t1<<"DT";
-     qDebug() <<"la transaction minimale de debit '1' " <<min_t1<<"DT";
-
-     QString astring=QString::number(a);
-     if (a<b){
-         qDebug() <<"Aucun gain dans les transactions ";
-     }
-     else if (a>b){
-          qDebug() <<"Votre gain est :  " << a - b << " DT ";
-     }
-
-}
-*/

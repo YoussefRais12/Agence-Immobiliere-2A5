@@ -23,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
    ui->tableView->setModel(t.afficher());
-   ui->id_transaction->setValidator( new QIntValidator(11111111, 99999999, this) );
    ui->debit_transaction->setValidator( new QIntValidator(0, 1, this) );
 }
 
@@ -36,11 +35,10 @@ void MainWindow::on_pushButton_clicked()
 {
 
 
-    QString idtest=ui->id_transaction->text();
     QString montanttest=ui->montant_transaction->text();
     QString debittest=ui->debit_transaction->text();
 
-    int ID_TRANSACTION=ui->id_transaction->text().toInt();
+    QString ID_TRANSACTION=ui->id_transaction->text();
     QString DATE = ui->date_transaction->date().toString();
     QString MONTANT=ui->montant_transaction->text();
     int DEBIT_CREDIT=ui->debit_transaction->text().toInt();
@@ -50,14 +48,30 @@ void MainWindow::on_pushButton_clicked()
 
     transactions t(ID_TRANSACTION,DATE,MONTANT,DESCRIPTION,DEBIT_CREDIT);
 
-    if(idtest.isEmpty() || montanttest.isEmpty() || debittest.isEmpty() || DESCRIPTION.isEmpty())
+    if(ID_TRANSACTION.isEmpty() || montanttest.isEmpty() || debittest.isEmpty() || DESCRIPTION.isEmpty())
                      {
                          QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("Saisir les champs ."),QMessageBox::Cancel);
                      }
     else{
-        if (idtest.length()!=8){
-            QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("La longuere de ID transaction doit étre de 8 chiffres ."),QMessageBox::Cancel);
+        int idverif=0,i;
+
+        if (ID_TRANSACTION.length()<=8){
+           for (i=0;i<=ID_TRANSACTION.length();i++){
+               if (ID_TRANSACTION[i]>='0' && ID_TRANSACTION[i]<="9"){
+                   idverif+=1;
+               }
+           }
         }
+        if (ID_TRANSACTION.length()>8){
+            QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("La longuere de ID transaction ne depasse pas 8 chiffres ."),QMessageBox::Cancel);
+        }
+        else if (idverif!=ID_TRANSACTION.length()){
+            QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("ID transaction doit contient seulement des chiffres ."),QMessageBox::Cancel);
+
+        }
+
+
+
         else if (debittest.length()!=1){
             QMessageBox::critical(0,qApp->tr("Erreur"),qApp->tr("Debit credit doit 0 ou 1  ."),QMessageBox::Cancel);
         }
@@ -100,6 +114,7 @@ void MainWindow::on_pushButton_12_clicked()
       QSqlQuery* query=new QSqlQuery(db);
       query->exec(sql);
       model->setQuery(*query);
+      qDebug() <<model ;
       ui->comboboxmodif->setModel(model);
 }
 
@@ -131,7 +146,7 @@ void MainWindow::on_pushButton_4_clicked()
     QString debittest=ui->debit_transaction_2->text();
     QString idtest=ui->comboboxmodif->currentText();
 
-    int ID=ui->comboboxmodif->currentText().toInt();
+    QString ID=ui->comboboxmodif->currentText();
     QString DATE = ui->date_transaction_2->date().toString();
     QString MONTANT=ui->montant_transaction_2->text();
     int DEBIT_CREDIT=ui->debit_transaction_2->text().toInt();
@@ -360,7 +375,7 @@ void MainWindow::on_pushButton_38_clicked()
         ui->textEdit->append("[ + ] Votre gain est :  "+sr+" DT\n ");
     }
 
-
+ui->textEdit->append("[ ------------------------------------------------------------- ]");
 
 }
 
@@ -407,6 +422,7 @@ void MainWindow::on_pushButton_7_clicked()
       QSqlQuery* query=new QSqlQuery(db);
       query->exec(sql);
       model->setQuery(*query);
+      qDebug() << model ;
       ui->comboboxajout->setModel(model);
 
 }
@@ -428,4 +444,25 @@ void MainWindow::on_pushButton_9_clicked()
     ui->description_transaction->setText(a);
     ui->montant_transaction->setText(b);
     ui->debit_transaction->setText("1");
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    QSqlQuery query;QString a,b,c ;
+    a=ui->comboboxmodif->currentText();
+   //qDebug()<<"a= "<<a;
+    query.prepare("SELECT MONTANT_T,DESCRIPTION_T,DEBIT_CREDIT from transaction WHERE ID_T=? ");
+     query.addBindValue(a);
+    query.exec();
+    while(query.next()){
+    a=query.value(0).toString();
+     b=query.value(1).toString();
+     c=query.value(2).toString();
+    //qDebug()<<"a= "<<a;
+    //qDebug()<<"b= "<<b;
+    }
+    ui->montant_transaction_2->setText(a);
+    ui->description_transaction_2->setText(b);
+    ui->debit_transaction_2->setText(c);
+
 }

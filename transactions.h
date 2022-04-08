@@ -11,18 +11,17 @@
 using namespace std;
 class transactions
 {
-    int ID,DEBIT_CREDIT;
-    QString DATE,MONTANT,DESCRIPTION;
+    int DEBIT_CREDIT;
+    QString DATE,MONTANT,DESCRIPTION,ID;
 public:
     transactions();
-    transactions(int ID_TRANSACTION,QString DATE,QString MONTANT,QString DESCRIPTION,int DEBIT_CREDIT );
+    transactions(QString ID_TRANSACTION,QString DATE,QString MONTANT,QString DESCRIPTION,int DEBIT_CREDIT );
     QSqlQueryModel *afficher();
     bool supprimer(int id);
     bool Ajouter();
     bool modifier();
     QSqlQueryModel *recherche(QString,int);
     QSqlQueryModel *tri(int,int);
-    //QString calculgain();
 
 };
 
