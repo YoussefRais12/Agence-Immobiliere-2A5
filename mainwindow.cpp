@@ -3,6 +3,7 @@
 #include "QString"
 #include "QDate"
 #include "transactions.h"
+#include "arduino.h"
 #include<QMessageBox>
 #include <iostream>
 #include <QTabWidget>
@@ -464,5 +465,75 @@ void MainWindow::on_pushButton_10_clicked()
     ui->montant_transaction_2->setText(a);
     ui->description_transaction_2->setText(b);
     ui->debit_transaction_2->setText(c);
+
+}
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    int r = a.connect_arduino();
+    qDebug()<< ":"<<r;
+
+}
+
+
+void MainWindow::on_pushButton_14_clicked()
+{
+
+}
+
+void MainWindow::on_pushButton_17_clicked()
+{
+    // door open
+
+    a.write_to_arduino("2");
+}
+
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    // door closed
+    a.write_to_arduino("3");
+}
+
+
+void MainWindow::on_pushButton_18_clicked()
+{
+     QString dataa=a.read_from_arduino(),b,k="";
+
+     QSqlQuery query;
+       /*  unsigned long result = 0;
+         for (int i=0; i<dataa.length(); i++) {
+             if (dataa[i]>=48 && dataa[i]<=57)
+             {
+                 result += (dataa[i]-48)*pow(16,dataa.length()-i-1);
+             } else if (dataa[i]>=65 && dataa[i]<=70) {
+                 result += (dataa[i]-55)*pow(16,dataa.length( )-i-1);
+             } else if (dataa[i]>=97 && dataa[i]<=102) {
+                 reRsult += (dataa[i]-87)*pow(16,dataa.length()-i-1);
+             }
+         }
+*/
+
+for (int i=0;i<11;i++){
+k+=dataa[i];
+}
+qDebug()<<"data = "<<k;
+
+
+     query.prepare("SELECT CARTE_ID from employe WHERE CARTE_ID=? ");
+     query.addBindValue(k);
+     query.exec();
+     if(query.next()){
+     b=query.value(0).toString();
+     //qDebug()<<"a= "<<a;
+     qDebug()<<"b= "<<b;
+     }
+     if (b==""){
+         a.write_to_arduino("0");
+     }
+     else {
+       a.write_to_arduino("1");
+     }
+
 
 }

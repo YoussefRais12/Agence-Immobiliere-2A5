@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "arduino.h"
 #include <QMainWindow>
 #include "transactions.h"
 namespace Ui {
@@ -48,9 +48,21 @@ private slots:
 
     void on_pushButton_10_clicked();
 
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_14_clicked();
+
+    void on_pushButton_17_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_pushButton_18_clicked();
+
 private:
     Ui::MainWindow *ui;
     transactions t;
+    arduino a;
+    QByteArray data;
 };
 
 #endif // MAINWINDOW_H
