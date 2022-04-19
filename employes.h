@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "employe.h"
 #include"popup.h"
+#include "arduino.h"
 namespace Ui {
 class employes;
 }
@@ -36,11 +37,15 @@ private slots :
      void on_pushButton_3_clicked();
 
      void on_tri_pre_clicked();
+     void update_label();
+
 
 private:
     Ui::employes *ui;
     employe Etmp;
     PopUp *popUp;
+    QByteArray data;
+    Arduino A;
 
 };
 

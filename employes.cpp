@@ -12,6 +12,8 @@
 #include <QDebug>
 #include <QApplication>
 #include"historique.h"
+#include "arduino.h"
+
 
 
 employes::employes(QWidget *parent) :
@@ -27,10 +29,13 @@ employes::employes(QWidget *parent) :
     ui->lineEdit_Telephone->setMaxLength(8);
 }
 
+
 employes::~employes()
 {
     delete ui;
 }
+
+
 
 void employes::on_pushButton_ajouter_clicked()
 {
