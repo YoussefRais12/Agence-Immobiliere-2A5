@@ -6,6 +6,7 @@
 #include "transaction.h"
 #include"popup.h"
 #include <QListWidget>
+#include "contrats.h"
 
 namespace Ui {
 class employes;
@@ -75,11 +76,26 @@ private slots :
 
      void on_pushButton_10_clicked();
 
+     void on_Ajouter_2_clicked();
+
+     void on_genpdf_clicked();
+
+     void on_Ajouter_clicked();
+
+     void on_pushButton_22_clicked();
+
+     void on_load_clicked();
+
+     void on_generer_clicked();
+
+     void on_supp_clicked();
+
 private:
     Ui::employes *ui;
     employe Etmp;
     PopUp *popUp;
     transactions t;
+    contrat pimp;
 
 };
 

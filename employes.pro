@@ -3,6 +3,7 @@ QT       += core gui sql \
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+QT += printsupport
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -17,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     connection.cpp \
+    contrats.cpp \
     employe.cpp \
     employes.cpp \
     exportexcelobject.cpp \
@@ -28,6 +30,7 @@ SOURCES += \
 
 HEADERS += \
     connection.h \
+    contrats.h \
     employe.h \
     employes.h \
     exportexcelobject.h \
