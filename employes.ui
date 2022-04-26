@@ -58,7 +58,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QTabWidget" name="tabWidget">
@@ -133,7 +133,7 @@ font-size:15px;
 </string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -664,7 +664,7 @@ font-size:15px;
         </rect>
        </property>
        <property name="text">
-        <string>trie par nom</string>
+        <string>trie par prenom</string>
        </property>
       </widget>
       <widget class="QPushButton" name="tri_id">
@@ -726,7 +726,7 @@ font-size:15px;
         </rect>
        </property>
        <property name="text">
-        <string>trie par prenom</string>
+        <string>trie par nom</string>
        </property>
       </widget>
      </widget>

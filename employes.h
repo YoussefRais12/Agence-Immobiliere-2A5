@@ -7,7 +7,7 @@
 #include"popup.h"
 #include <QListWidget>
 #include "contrats.h"
-
+#include "arduino.h"
 namespace Ui {
 class employes;
 }
@@ -90,13 +90,17 @@ private slots :
 
      void on_supp_clicked();
 
+     //void on_pushButton_21_clicked();
+
+     void on_Modif_clicked();
+
 private:
     Ui::employes *ui;
     employe Etmp;
     PopUp *popUp;
     transactions t;
     contrat pimp;
-
+    arduino a;
 };
 
 #endif // EMPLOYES_H

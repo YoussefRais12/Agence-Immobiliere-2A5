@@ -1019,3 +1019,45 @@ void employes::on_supp_clicked()
     }
 }
 }
+
+void employes::on_Modif_clicked()
+{
+    //int Num=ui->comboBox->currentText().toInt();
+    /*int Cin=ui->cin->text().toInt();
+    QString Nom=ui->nom->text();
+    QString Prenom=ui->prenom->text();
+    QString Email=ui->mail->text();
+    QString Telephone=ui->telephone->text();
+    int signe=ui->signe->text().toInt();
+    int type=ui->type->text(9).toInt();
+    QString Contenu=ui->contenu->text();
+    QString Date=ui->date->text();*/
+   // int numero_contrat=ui->contrat_numero->text().toInt();
+    int numero_contrat=ui->contrat_id_modif->currentText().toInt();
+    qDebug()<<"id : "<< numero_contrat;
+    QString nom=ui->contrat_nom->text();
+    QString prenom=ui->contrat_prenom->text();
+    int cin=ui->cin->text().toInt();
+    QString telephone=ui->contrat_telephone->text();
+    int type=ui->contrat_type->text().toInt();
+    QString contenu=ui->contrat_contenu->text();
+    int signe=ui->contrat_signe->text().toInt();
+   /* QString numerotest=ui->numero->text();
+    QString cintest=ui->cin->text();
+    QString signetest=ui->signe->text();
+    QString testtype=ui->type->text();*/
+    QString prixfinal=ui->contrat_prixfinal->text();
+    QString date=ui->date->text();
+    contrat p(numero_contrat,cin,nom,prenom,telephone,signe, type,contenu,date,prixfinal);
+
+
+    bool test=p.modifier(numero_contrat);
+    if(test) {
+        QMessageBox::information(nullptr, QObject::tr("OK"), QObject::tr(" MODIFIED\n"),QMessageBox::Cancel);
+    }
+    else
+    {
+        QMessageBox::critical(nullptr, QObject::tr("Not Okay"), QObject::tr("Couldn't MODIFY\n"),QMessageBox::Cancel);
+
+    }
+}

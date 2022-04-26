@@ -88,7 +88,7 @@ bool contrat::modifier(int Num)
         qDebug()<<"updated";
     }
     else {
-        qDebug()<<"fk";
+        qDebug()<<"not updated";
     }
 
 }
